@@ -1,0 +1,412 @@
+[ 2016-04-15T21:35:51+08:00 ] 127.0.0.1 /icb/index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.004000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.038003s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.041003s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.009001s ]
+
+[ 2016-04-15T21:36:53+08:00 ] 127.0.0.1 /icb/index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005001s ]
+ERR: 模板不存在:./Application/Home/View/Index/index.html
+
+[ 2016-04-15T21:37:12+08:00 ] 127.0.0.1 /icb/index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+ERR: 模板不存在:./Application/Home/View/Index/index.html.html
+
+[ 2016-04-15T21:37:48+08:00 ] 127.0.0.1 /icb/index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.004000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.034002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.037002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005000s ]
+
+[ 2016-04-15T22:55:03+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/bootstrap.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:03+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/ionicons.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:03+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/main.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:03+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/jquery.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:03+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/bootstrap.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:03+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/smooth-scroll.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:04+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/main.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:04+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/bootstrap.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:04+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/jquery.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:05+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/ionicons.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:05+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/bootstrap.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:05+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/main.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:05+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/smooth-scroll.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:05+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/main.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:10+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/bootstrap.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:10+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/main.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:10+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/ionicons.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:32+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/bootstrap.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:32+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/ionicons.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:32+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/main.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:32+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/jquery.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:32+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/bootstrap.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:33+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/smooth-scroll.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:33+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/main.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:33+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/bootstrap.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:34+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/jquery.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:34+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/ionicons.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:34+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/bootstrap.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:35+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/main.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:35+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/smooth-scroll.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:55:35+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/main.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:57:27+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/bootstrap.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:57:28+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/ionicons.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:57:28+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/main.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:57:28+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/jquery.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:57:28+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/bootstrap.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:57:28+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/smooth-scroll.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:57:28+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/main.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:57:29+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/bootstrap.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:57:29+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/jquery.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:57:30+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/ionicons.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:57:30+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/bootstrap.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:57:30+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/main.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:57:30+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/smooth-scroll.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T22:57:30+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/main.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:00:31+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/bootstrap.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:00:31+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/ionicons.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:00:31+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/main.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:00:31+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/jquery.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:00:31+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/bootstrap.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:00:31+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/smooth-scroll.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:00:31+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/main.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:00:32+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/bootstrap.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:00:32+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/jquery.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:00:33+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/ionicons.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:00:33+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/bootstrap.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:00:33+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/main.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:00:33+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/smooth-scroll.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:00:33+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/main.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:00:35+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/bootstrap.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:00:35+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/main.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:00:35+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/ionicons.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:01:18+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/bootstrap.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:01:18+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/ionicons.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:01:18+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/main.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:01:18+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/jquery.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:01:18+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/bootstrap.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:01:18+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/smooth-scroll.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:01:18+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/main.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:01:19+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/bootstrap.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:01:19+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/jquery.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:01:20+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/ionicons.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:01:20+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/bootstrap.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:01:20+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/main.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:01:20+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/smooth-scroll.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:01:20+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/main.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:04:37+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/bootstrap.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:04:37+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/ionicons.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:04:38+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/main.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:04:38+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/jquery.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:04:38+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/bootstrap.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:04:38+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/smooth-scroll.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:04:38+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/main.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:04:39+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/bootstrap.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:04:39+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/jquery.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:04:39+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/ionicons.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:04:39+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/bootstrap.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:04:40+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/main.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:04:40+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/smooth-scroll.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:04:40+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/main.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:14+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/bootstrap.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:14+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/ionicons.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:14+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/main.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:15+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/jquery.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:15+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/bootstrap.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:15+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/smooth-scroll.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:15+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/main.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:16+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/bootstrap.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:16+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/jquery.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:16+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/ionicons.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:16+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/bootstrap.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:16+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/main.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:16+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/smooth-scroll.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:16+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/main.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:22+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/bootstrap.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:22+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/ionicons.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:22+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/main.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:22+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/jquery.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:22+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/bootstrap.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:22+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/smooth-scroll.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:23+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/main.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:23+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/bootstrap.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:23+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/jquery.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:24+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/ionicons.min.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:24+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/bootstrap.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:24+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/css/main.css
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:24+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/smooth-scroll.min.js
+ERR: 无法加载控制器:Public
+
+[ 2016-04-15T23:12:24+08:00 ] 127.0.0.1 /icb/index.php/Home/Public/static/js/main.js
+ERR: 无法加载控制器:Public
+
