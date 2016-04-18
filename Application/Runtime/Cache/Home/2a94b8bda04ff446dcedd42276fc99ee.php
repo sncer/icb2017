@@ -7,13 +7,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>仿rrb</title>
 		<!-- Bootstrap core CSS -->
-		<link href="/icb/Application/Home/View//Public/static/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/icb2017/Application/Home/View//Public/static/css/bootstrap.min.css" rel="stylesheet">
 			
-		<link href="/icb/Application/Home/View//Public/static/css/jquery-accordion-menu.css" rel="stylesheet" type="text/css" />
-		<link href="/icb/Application/Home/View//Public/static/css/font-awesome.css" rel="stylesheet" type="text/css" />
+		<link href="/icb2017/Application/Home/View//Public/static/css/jquery-accordion-menu.css" rel="stylesheet" type="text/css" />
+		<link href="/icb2017/Application/Home/View//Public/static/css/font-awesome.css" rel="stylesheet" type="text/css" />
 		
 		<!-- Custom styles for this template -->
-		<link href="/icb/Application/Home/View//Public/static/css/main.css" rel="stylesheet">
+		<link href="/icb2017/Application/Home/View//Public/static/css/main.css" rel="stylesheet">
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -33,8 +33,8 @@
 						<div id="jquery-accordion-menu" class="jquery-accordion-menu red">
 							<ul id="demo-list">
 							 
-							    <li class="active"><a href="#"><i class="fa fa-long-arrow-right"></i>WELCOME</a></li>
-								<li><a href="#"><i class="fa fa-long-arrow-right"></i>VENUE, GHENT, THE CITY</a></li>
+							    <li class="active"><a href="index"><i class="fa fa-long-arrow-right"></i>WELCOME</a></li>
+								<li><a href="venue"><i class="fa fa-long-arrow-right"></i>VENUE, GHENT, THE CITY</a></li>
 								<li><a href="#"><i class="fa fa-long-arrow-right"></i>RRB-12 ORGANIZING COMMITTEE</a></li>
 								<li><a href="#"><i class="fa fa-long-arrow-right"></i>RRB-12 SCIENTIFIC ADVISORY BOARD</a></li>
 								<li><a href="#"><i class="fa fa-long-arrow-right"></i>CONFIRMED FACULTY AND CHAIRS</a></li>
@@ -108,10 +108,10 @@
 		<!-- Bootstrap core JavaScript
     ================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="/icb/Application/Home/View//Public/static/js/jquery.min.js"></script>
-		<script src="/icb/Application/Home/View//Public/static/js/bootstrap.min.js"></script>
-		<script src="/icb/Application/Home/View//Public/static/js/jquery-accordion-menu.js" type="text/javascript"></script>
-		<script src="/icb/Application/Home/View//Public/static/js/main.js"></script>
+		<script src="/icb2017/Application/Home/View//Public/static/js/jquery.min.js"></script>
+		<script src="/icb2017/Application/Home/View//Public/static/js/bootstrap.min.js"></script>
+		<script src="/icb2017/Application/Home/View//Public/static/js/jquery-accordion-menu.js" type="text/javascript"></script>
+		<script src="/icb2017/Application/Home/View//Public/static/js/main.js"></script>
 		<script type="text/javascript">
 			$(function(){	
 				//顶部导航切换
