@@ -8,4 +8,7 @@ class IndexController extends Controller {
 	public function venue(){
     	$this->display();
     }
+	public function committee(){
+    	$this->display();
+    }
 }
