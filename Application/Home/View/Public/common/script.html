@@ -12,10 +12,12 @@
 				$("#demo-list li.active").removeClass("active")
 				$(this).addClass("active");
 			})
+			//加粗显示
 			var href = '{$href}';
 			if (href) {
 				$("#demo-list li.active").removeClass("active")
 				$("#demo-list [href="+href+"]").parent("li").addClass("active");
+				$("#demo-list [href="+href+"]").parent().parent("ul").css("display","block");
 			}
 		})	
 	</script>
