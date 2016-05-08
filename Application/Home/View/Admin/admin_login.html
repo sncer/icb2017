@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>Signin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="__STATIC__/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="__STATIC__/css/signin.css" rel="stylesheet">
+
+    <script src="__STATIC__/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="admin_name" class="sr-only">Username</label>
+        <input type="text" id="admin_name" class="form-control" placeholder="Username" required autofocus>
+        <label for="admin_pwd" class="sr-only">Password</label>
+        <input type="password" id="admin_pwd" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button id="signin_btn" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="__STATIC__/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="__STATIC__/js/jquery.min.js"></script>
+	<script src="__STATIC__/js/bootstrap.min.js"></script>
+	<script src="__STATIC__/js/dump.js"></script>
+    <script type="text/javascript">
+	    $(document).ready(function() {
+			$("#signin_btn").click(function(){
+				login();
+			});
+		});
+		function login(){
+			var admin_name = $("#admin_name").val();
+			var admin_pwd = $("#admin_pwd").val();
+			if (admin_name !="" && admin_pwd !="") {
+				$.ajax({
+			        type : 'POST',
+			        url: 'login',
+			        dataType:"json",
+			        data : {
+			            admin_name : admin_name,
+			            admin_pwd : admin_pwd
+			        },
+			        success:function (result) {
+			            if(result == "Success"){
+			            	location.href="{:U('Index/index')}";
+			            }else{
+			            	alert("Sign Fail");
+			            }
+			        },
+			        error:function (e) {
+			            alert('Error');
+			        },
+			        beforeSend : function(){
+			            $('#signin_btn').text("Please Wait...");
+			        },
+			        complete : function(){
+			            $('#signin_btn').text("Sign in");
+			        }
+			    });
+			}
+		}
+    </script>
+  </body>
+</html>
