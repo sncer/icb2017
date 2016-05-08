@@ -37,6 +37,11 @@ class IndexController extends Controller {
     	$this->assign('href',$href);
     	$this->display();
 	}
+	public function dates(){
+		$href = "dates";
+    	$this->assign('href',$href);
+    	$this->display();
+	}
 	public function program(){
 		$href = "program";
     	$this->assign('href',$href);
@@ -49,6 +54,16 @@ class IndexController extends Controller {
 	}
 	public function registration(){
 		$href = "registration";
+    	$this->assign('href',$href);
+    	$this->display();
+	}
+	public function publications(){
+		$href = "publications";
+    	$this->assign('href',$href);
+    	$this->display();
+	}
+	public function contact(){
+		$href = "contact";
     	$this->assign('href',$href);
     	$this->display();
 	}
