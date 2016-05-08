@@ -13,7 +13,7 @@ class AdminController extends Controller {
 			$this->ajaxReturn($data,'json');
 		}
 		$Admin = M('Admin');
-		$data = $Admin -> where("admin_name='$admin_name' AND admin_pwd=PASSWORD('$admin_pwd')")->find();
+		$data = $Admin -> where("admin_name='$admin_name' AND admin_pwd=md5('$admin_pwd')")->find();
 		if($data == null){
 			$data = "Fail";
 			$this->ajaxReturn($data,'json');
