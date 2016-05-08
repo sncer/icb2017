@@ -12,18 +12,23 @@ class IndexController extends Controller {
     	$this->assign('href',$href);
     	$this->display();
     }
-	public function committee(){
-		$href = "committee";
+	public function chairman(){
+		$href = "chairman";
     	$this->assign('href',$href);
     	$this->display();
     }
-	public function board(){
-		$href = "board";
+	public function advisory(){
+		$href = "advisory";
     	$this->assign('href',$href);
     	$this->display();
     }
-	public function chairs(){
-		$href = "chairs";
+	public function scientific(){
+		$href = "scientific";
+    	$this->assign('href',$href);
+    	$this->display();
+	}
+	public function organizing(){
+		$href = "organizing";
     	$this->assign('href',$href);
     	$this->display();
 	}
