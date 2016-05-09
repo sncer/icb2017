@@ -5,10 +5,15 @@ class IndexController extends CommonController {
 	public function _initialize() {
         parent::_initialize();
     }
-    public function index(){
-    	$href = "index";
+	public function welcome(){
+    	$href = "welcome";
     	$this->assign('href',$href);
-    	$this->display();
+    	$this->display("Index/index");
+    }
+    public function index(){
+    	$href = "welcome";
+    	$this->assign('href',$href);
+    	$this->display("Index/index");
     }
 	public function venue(){
 		$href = "venue";
