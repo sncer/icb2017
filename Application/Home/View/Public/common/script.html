@@ -16,8 +16,8 @@
 			var href = '{$href}';
 			if (href) {
 				$("#demo-list li.active").removeClass("active")
-				$("#demo-list [href="+href+"]").parent("li").addClass("active");
-				$("#demo-list [href="+href+"]").parent().parent("ul").css("display","block");
+				$("#demo-list [href='{:U("Index/$href")}']").parent("li").addClass("active");
+				$("#demo-list [href='{:U("Index/$href")}']").parent().parent("ul").css("display","block");
 			}
 		})	
 	</script>
