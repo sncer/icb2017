@@ -1,0 +1,10 @@
+.header .jumbotron{
+	height: 179px;
+    background: url(../img/header_img.png) no-repeat center top;
+    background-size: 100% auto;
+    border-radius: 0;
+}
+.main .mark{
+	color: red;
+	background-color: white;
+}
