@@ -5,12 +5,15 @@ class UserController extends Controller {
 	public function register(){
 		$this->assign("title_list",C('TITLE_LIST'));
 		$this->assign("country_list",C('COUNTRY_LIST'));
+		
     	$this->display();
     }
 	
 	public function user_register(){
+		$title_list = C('TITLE_LIST');
+		$country_list = C('COUNTRY_LIST');
 		// 获取表单的POST数据
-		$data['title'] = $_POST['title'];
+		$data['title'] = $title_list[$_POST['title']];
 		$data['first_name'] = $_POST['first_name'];
 		$data['last_name'] = $_POST['last_name'];
 		$data['email'] = $_POST['email'];
@@ -19,7 +22,7 @@ class UserController extends Controller {
 		$data['department'] = $_POST['department'];
 		$data['zip'] = $_POST['zip'];
 		$data['city'] = $_POST['city'];
-		$data['country'] = $_POST['country'];
+		$data['country'] = $country_list[$_POST['country']];
 		$data['work_phone'] = $_POST['work_phone'];
 		$password = $_POST['password'];
 		$salt = $this->random_str(6);
@@ -31,10 +34,33 @@ class UserController extends Controller {
 		$data['active'] = 1;
 		// 实例化User模型
 		$User = M('User');
-		$result = $User->data($data)->add();
-		dump($result);
-	//	$this->display();
+		$res_id = $User->add($data);
+		if($res_id > 0){
+			//根据id获取用户信息，并存入session，跳转到dashboard
+			$result = $User->where("user_id = $res_id")->find();
+			session('user',$result);
+			$this->assign('user',$result);
+			//设置成功后跳转后台主页面的地址   
+			$this->success('Register successfully!', 'dashboard',2);
+		}else{
+			$this->display('Public:500');
+		}
 		
+		
+	}
+
+	public function login(){
+		$this->display();
+	}
+
+	public function dashboard(){
+		$user = session('user');
+		$this->assign('user',$user);
+		$this->display();
+	}
+
+	public function blank(){
+		$this->display();
 	}
 	
 	//生成随机数,用于生成salt
