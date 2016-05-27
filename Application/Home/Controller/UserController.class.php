@@ -86,6 +86,15 @@ class UserController extends Controller {
 		$this->display();
 	}
 	
+	public function submit_abstract(){
+		$user = session('user');
+		$this->assign('user',$user);
+		$this->display();
+	}
+	
+	
+	
+	
 	//生成随机数,用于生成salt
     public function random_str($length){
         //生成一个包含 大写英文字母, 小写英文字母, 数字 的数组

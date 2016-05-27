@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<include file="./Application/Home/View/Public/common/user_head.html" />
+
+<body>
+
+    <div id="wrapper">
+
+        <include file="./Application/Home/View/Public/common/user_nav.html" />
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Submit Abstract</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+				<form>
+					<div class="form-group">
+						<label for="title">Full Title<span class="mark">*</span></label>
+						<input type="text" class="form-control" id="title" name="title" placeholder="">
+					</div>
+					
+					<div class="form-group">
+						<label for="">Author(s)<span class="mark">*</span></label>
+						<div class="panel panel-default">
+							<div class="panel-heading">An author</div>
+							<div class="panel-body form-horizontal">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">First Name<span class="mark">*</span></label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" name="first_name" placeholder="First Name">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Last Name<span class="mark">*</span></label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" name="last_name" placeholder="Last Name">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Email Address<span class="mark">*</span></label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" name="email" placeholder="Email Address">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Academic Degree(s)<span class="mark">*</span></label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" name="degree" placeholder="Academic Degree(s)">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Affiliation<span class="mark">*</span></label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" name="affiliation" placeholder="Affiliation">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-3 col-sm-9">
+										<div class="radio">
+											<label>
+									          <input type="radio" name="is_corres" value="1" checked>
+									          Please select if this is the corresponding author
+									        </label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-3 col-sm-9">
+										<button type="button" class="btn btn-success btn_add_author" onclick="addAuthor(this)">Add Author</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="exampleInputPassword1">Abstract<span class="mark">*</span></label>
+						<textarea class="form-control" rows="5"></textarea>
+						<p class="help-block">Limit 400 words.</p>
+					</div>
+					<div class="form-group">
+						<label for="title">Keywords<span class="mark">*</span></label>
+						<input type="text" class="form-control" id="keywords" name="keywords" placeholder="">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputFile">File input<span class="mark">*</span></label>
+						<input type="file" id="exampleInputFile">
+						<p class="help-block">Please select a Word file (xxx.doc or xxx.docx)</p>
+					</div>
+					<button type="submit" class="btn btn-primary">Submit Abstract</button>
+				</form>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    
+
+   	<include file="./Application/Home/View/Public/common/user_script.html" />
+   	<script type="text/javascript">
+	   	$(document).ready(function() {
+
+		});
+		
+		function delAuthor(btn){
+			var panel = $(btn).parents(".panel");
+			var r=confirm("Are you sure to delete this author?")
+			if (r==true){
+			    panel.remove();
+			}
+			
+		}
+		
+		function addAuthor(btn){
+			var panel = $(btn).parents(".panel");
+			panel.after(
+				'<div class="panel panel-default">'+
+					'<div class="panel-heading">An author</div>'+
+					'<div class="panel-body form-horizontal">'+
+						'<div class="form-group">'+
+							'<label class="col-sm-3 control-label">First Name<span class="mark">*</span></label>'+
+							'<div class="col-sm-6">'+
+								'<input type="text" class="form-control" name="first_name" placeholder="First Name">'+
+							'</div>'+
+						'</div>'+
+						'<div class="form-group">'+
+							'<label class="col-sm-3 control-label">Last Name<span class="mark">*</span></label>'+
+							'<div class="col-sm-6">'+
+								'<input type="text" class="form-control" name="last_name" placeholder="Last Name">'+
+							'</div>'+
+						'</div>'+
+						'<div class="form-group">'+
+							'<label class="col-sm-3 control-label">Email Address<span class="mark">*</span></label>'+
+							'<div class="col-sm-6">'+
+								'<input type="text" class="form-control" name="email" placeholder="Email Address">'+
+							'</div>'+
+						'</div>'+
+						'<div class="form-group">'+
+							'<label class="col-sm-3 control-label">Academic Degree(s)<span class="mark">*</span></label>'+
+							'<div class="col-sm-6">'+
+								'<input type="text" class="form-control" name="degree" placeholder="Academic Degree(s)">'+
+							'</div>'+
+						'</div>'+
+						'<div class="form-group">'+
+							'<label class="col-sm-3 control-label">Affiliation<span class="mark">*</span></label>'+
+							'<div class="col-sm-6">'+
+								'<input type="text" class="form-control" name="affiliation" placeholder="Affiliation">'+
+							'</div>'+
+						'</div>'+
+						'<div class="form-group">'+
+							'<div class="col-sm-offset-3 col-sm-9">'+
+								'<div class="radio">'+
+									'<label>'+
+							          '<input type="radio" name="is_corres" value="1">'+
+							          'Please select if this is the corresponding author'+
+							        '</label>'+
+								'</div>'+
+							'</div>'+
+						'</div>'+
+						'<div class="form-group">'+
+							'<div class="col-sm-offset-3 col-sm-9">'+
+								'<button type="button" class="btn btn-success btn_add_author" onclick="addAuthor(this)">Add Author</button>'+
+								'<button type="button" class="btn btn-danger" onclick="delAuthor(this)">Delete Author</button>'+
+							'</div>'+
+						'</div>'+
+					'</div>'+
+				'</div>'
+			);
+		}
+   	</script>
+
+</body>
+
+</html>
