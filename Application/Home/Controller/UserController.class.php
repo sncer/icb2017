@@ -44,6 +44,7 @@ class UserController extends Controller {
 			$this->success('Register successfully!', 'dashboard',2);
 		}else{
 			$this->display('Public:500');
+			exit;
 		}
 		
 		
@@ -51,6 +52,28 @@ class UserController extends Controller {
 
 	public function login(){
 		$this->display();
+	}
+	
+	public function user_login(){
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+		
+		if(empty($email) || empty($password)){
+			$this->display('Public:500');
+			exit;
+		}
+		
+		$User = M('User');
+		$result = $User->where("email = '".$email."' and password = md5(concat(md5('".$password."'),salt))")->find();
+		if($result){
+			session('user',$result);
+			$this->assign('user',$result);
+			$this->display('User:dashboard');
+		}else{
+			$this->display('Public:500');
+			exit;
+		}
+		
 	}
 
 	public function dashboard(){

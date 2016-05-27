@@ -157,6 +157,10 @@
 		                    identical: {
 		                        field: 'confirmPassword',
 		                        message: 'The password and its confirm are not the same'
+		                    },
+		                    stringLength: {
+		                        min: 6,
+		                        message: 'The password must be more than 6 characters'
 		                    }
 		                }
 		            },
@@ -168,6 +172,10 @@
 		                    identical: {
 		                        field: 'password',
 		                        message: 'The password and its confirm are not the same'
+		                    },
+		                    stringLength: {
+		                        min: 6,
+		                        message: 'The password must be more than 6 characters'
 		                    }
 		                }
 		            },
