@@ -19,13 +19,13 @@
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
-				<form>
+				<form id="abstract_form" action="user_abstract" enctype="multipart/form-data" method="post">
 					<div class="form-group">
 						<label for="title">Full Title<span class="mark">*</span></label>
 						<input type="text" class="form-control" id="title" name="title" placeholder="">
 					</div>
 					
-					<div class="form-group">
+					<div>
 						<label for="">Author(s)<span class="mark">*</span></label>
 						<div class="panel panel-default">
 							<div class="panel-heading">An author</div>
@@ -33,38 +33,38 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label">First Name<span class="mark">*</span></label>
 									<div class="col-sm-6">
-										<input type="text" class="form-control" name="first_name" placeholder="First Name">
+										<input type="text" class="form-control" name="first_name[]" placeholder="First Name">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Last Name<span class="mark">*</span></label>
 									<div class="col-sm-6">
-										<input type="text" class="form-control" name="last_name" placeholder="Last Name">
+										<input type="text" class="form-control" name="last_name[]" placeholder="Last Name">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Email Address<span class="mark">*</span></label>
 									<div class="col-sm-6">
-										<input type="text" class="form-control" name="email" placeholder="Email Address">
+										<input type="text" class="form-control" name="email[]" placeholder="Email Address">
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-3 control-label">Academic Degree(s)<span class="mark">*</span></label>
+									<label class="col-sm-3 control-label">Academic Degree(s)</label>
 									<div class="col-sm-6">
-										<input type="text" class="form-control" name="degree" placeholder="Academic Degree(s)">
+										<input type="text" class="form-control" name="degree[]" placeholder="Academic Degree(s)">
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-3 control-label">Affiliation<span class="mark">*</span></label>
+									<label class="col-sm-3 control-label">Affiliation</label>
 									<div class="col-sm-6">
-										<input type="text" class="form-control" name="affiliation" placeholder="Affiliation">
+										<input type="text" class="form-control" name="affiliation[]" placeholder="Affiliation">
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-offset-3 col-sm-9">
 										<div class="radio">
 											<label>
-									          <input type="radio" name="is_corres" value="1" checked>
+									          <input type="radio" name="is_corres[]" value="0" checked>
 									          Please select if this is the corresponding author
 									        </label>
 										</div>
@@ -72,26 +72,81 @@
 								</div>
 								<div class="form-group">
 									<div class="col-sm-offset-3 col-sm-9">
-										<button type="button" class="btn btn-success btn_add_author" onclick="addAuthor(this)">Add Author</button>
+										<button type="button" class="btn btn-success btn_add_author">Add Author</button>
 									</div>
 								</div>
 							</div>
 						</div>
+						
+						<!-- The option field template containing an option field and a Remove button -->
+						<div class="panel panel-default hide" id="author_template">
+							<div class="panel-heading">An author</div>
+							<div class="panel-body form-horizontal">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">First Name<span class="mark">*</span></label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" name="first_name[]" placeholder="First Name">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Last Name<span class="mark">*</span></label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" name="last_name[]" placeholder="Last Name">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Email Address<span class="mark">*</span></label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" name="email[]" placeholder="Email Address">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Academic Degree(s)</label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" name="degree[]" placeholder="Academic Degree(s)">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Affiliation</label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" name="affiliation[]" placeholder="Affiliation">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-3 col-sm-9">
+										<div class="radio">
+											<label>
+									          <input type="radio" name="is_corres[]" value="1">
+									          Please select if this is the corresponding author
+									        </label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-3 col-sm-9">
+										<button type="button" class="btn btn-success btn_add_author">Add Author</button>
+										<button type="button" class="btn btn-danger btn_delete_author">Delete Author</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
 					</div>
 					
 					<div class="form-group">
-						<label for="exampleInputPassword1">Abstract<span class="mark">*</span></label>
-						<textarea class="form-control" rows="5"></textarea>
+						<label for="abstract">Abstract<span class="mark">*</span></label>
+						<textarea id="abstract" name="abstract" class="form-control" rows="5"></textarea>
 						<p class="help-block">Limit 400 words.</p>
 					</div>
 					<div class="form-group">
-						<label for="title">Keywords<span class="mark">*</span></label>
+						<label for="keywords">Keywords<span class="mark">*</span></label>
 						<input type="text" class="form-control" id="keywords" name="keywords" placeholder="">
 					</div>
 					<div class="form-group">
-						<label for="exampleInputFile">File input<span class="mark">*</span></label>
-						<input type="file" id="exampleInputFile">
-						<p class="help-block">Please select a Word file (xxx.doc or xxx.docx)</p>
+						<label for="abstract_file">File input<span class="mark">*</span></label>
+						<input type="file" id="abstract_file" name="abstract_file">
+						<p class="help-block">Please select a Word file (xxx.doc or xxx.docx) which is smaller than 2 MB in size.</p>
 					</div>
 					<button type="submit" class="btn btn-primary">Submit Abstract</button>
 				</form>
@@ -106,76 +161,158 @@
     
 
    	<include file="./Application/Home/View/Public/common/user_script.html" />
+   	
    	<script type="text/javascript">
-	   	$(document).ready(function() {
-
-		});
 		
-		function delAuthor(btn){
-			var panel = $(btn).parents(".panel");
-			var r=confirm("Are you sure to delete this author?")
-			if (r==true){
-			    panel.remove();
-			}
+		$(document).ready(function() {
+			$('#abstract_form').bootstrapValidator({
+		        message: 'This value is not valid',
+		        feedbackIcons: {
+		            valid: 'glyphicon glyphicon-ok',
+		            invalid: 'glyphicon glyphicon-remove',
+		            validating: 'glyphicon glyphicon-refresh'
+		        },
+		        fields: {
+		        	title: {
+		                validators: {
+		                    notEmpty: {
+		                        message: 'The title is required'
+		                    }
+		                }
+		            },
+		            'first_name[]': {
+		                validators: {
+		                    notEmpty: {
+		                        message: 'The first name is required and cannot be empty'
+		                    }
+		                }
+		            },
+		            'last_name[]': {
+		                validators: {
+		                    notEmpty: {
+		                        message: 'The last name is required and cannot be empty'
+		                    }
+		                }
+		            },
+		            'email[]': {
+		                validators: {
+		                	notEmpty: {
+		                        message: 'The email is required and cannot be empty'
+		                    },
+		                    emailAddress: {
+		                        message: 'The input is not a valid email address'
+		                    }
+		                }
+		            },
+//		            'degree[]': {
+//		                validators: {
+//		                    notEmpty: {
+//		                        message: 'The academic degree is required'
+//		                    }
+//		                }
+//		            },
+//		            'affiliation[]': {
+//		                validators: {
+//		                    notEmpty: {
+//		                        message: 'The affiliation is required'
+//		                    }
+//		                }
+//		            },
+		            'is_corres[]': {
+		                validators: {
+		                    notEmpty: {
+		                        message: 'The corresponding author is required'
+		                    }
+		                }
+		            },
+		            abstract: {
+		                validators: {
+		                    notEmpty: {
+		                        message: 'The abstract is required'
+		                    }
+		                }
+		            },
+		            keywords: {
+		                validators: {
+		                    notEmpty: {
+		                        message: 'The keywords is required'
+		                    }
+		                }
+		            },
+		            abstract_file: {
+		                validators: {
+		                    notEmpty: {
+		                        message: 'The file input is required and cannot be empty'
+		                    },
+		                    file: {
+		                        extension: 'doc,docx',
+		                        type: 'application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+		                        maxSize: 2048 * 1024,
+		                        message: 'The selected file is not valid, it should be (doc,docx) and 2 MB at maximum.'
+		                    }
+		                }
+		            }
+		            
+		        }
+		    })
 			
-		}
-		
-		function addAuthor(btn){
-			var panel = $(btn).parents(".panel");
-			panel.after(
-				'<div class="panel panel-default">'+
-					'<div class="panel-heading">An author</div>'+
-					'<div class="panel-body form-horizontal">'+
-						'<div class="form-group">'+
-							'<label class="col-sm-3 control-label">First Name<span class="mark">*</span></label>'+
-							'<div class="col-sm-6">'+
-								'<input type="text" class="form-control" name="first_name" placeholder="First Name">'+
-							'</div>'+
-						'</div>'+
-						'<div class="form-group">'+
-							'<label class="col-sm-3 control-label">Last Name<span class="mark">*</span></label>'+
-							'<div class="col-sm-6">'+
-								'<input type="text" class="form-control" name="last_name" placeholder="Last Name">'+
-							'</div>'+
-						'</div>'+
-						'<div class="form-group">'+
-							'<label class="col-sm-3 control-label">Email Address<span class="mark">*</span></label>'+
-							'<div class="col-sm-6">'+
-								'<input type="text" class="form-control" name="email" placeholder="Email Address">'+
-							'</div>'+
-						'</div>'+
-						'<div class="form-group">'+
-							'<label class="col-sm-3 control-label">Academic Degree(s)<span class="mark">*</span></label>'+
-							'<div class="col-sm-6">'+
-								'<input type="text" class="form-control" name="degree" placeholder="Academic Degree(s)">'+
-							'</div>'+
-						'</div>'+
-						'<div class="form-group">'+
-							'<label class="col-sm-3 control-label">Affiliation<span class="mark">*</span></label>'+
-							'<div class="col-sm-6">'+
-								'<input type="text" class="form-control" name="affiliation" placeholder="Affiliation">'+
-							'</div>'+
-						'</div>'+
-						'<div class="form-group">'+
-							'<div class="col-sm-offset-3 col-sm-9">'+
-								'<div class="radio">'+
-									'<label>'+
-							          '<input type="radio" name="is_corres" value="1">'+
-							          'Please select if this is the corresponding author'+
-							        '</label>'+
-								'</div>'+
-							'</div>'+
-						'</div>'+
-						'<div class="form-group">'+
-							'<div class="col-sm-offset-3 col-sm-9">'+
-								'<button type="button" class="btn btn-success btn_add_author" onclick="addAuthor(this)">Add Author</button>'+
-								'<button type="button" class="btn btn-danger" onclick="delAuthor(this)">Delete Author</button>'+
-							'</div>'+
-						'</div>'+
-					'</div>'+
-				'</div>'
-			);
-		}
+			// Add button click handler
+	        .on('click', '.btn_add_author', function() {
+	            var $template = $('#author_template'),
+	                $clone    = $template
+	                                .clone()
+	                                .removeClass('hide')
+	                                .removeAttr('id')
+	                                .insertBefore($template),
+	                $first_name   = $clone.find('[name="first_name[]"]');
+					$last_name   = $clone.find('[name="last_name[]"]');
+					$email   = $clone.find('[name="email[]"]');
+					$degree   = $clone.find('[name="degree[]"]');
+					$affiliation   = $clone.find('[name="affiliation[]"]');
+					$is_corres    = $clone.find('[name="is_corres[]"]');
+	            // Add new field
+	            $('#abstract_form').bootstrapValidator('addField', $first_name);
+	            $('#abstract_form').bootstrapValidator('addField', $last_name);
+	            $('#abstract_form').bootstrapValidator('addField', $email);
+	            $('#abstract_form').bootstrapValidator('addField', $degree);
+	            $('#abstract_form').bootstrapValidator('addField', $affiliation);
+	            $('#abstract_form').bootstrapValidator('addField', $is_corres);
+	        })
+	        
+			// Remove button click handler
+	        .on('click', '.btn_delete_author', function() {
+	            var $panel    = $(this).parents('.panel'),
+	            
+	                $first_name   = $panel.find('[name="first_name[]"]');
+					$last_name   = $panel.find('[name="last_name[]"]');
+					$email   = $panel.find('[name="email[]"]');
+					$degree   = $panel.find('[name="degree[]"]');
+					$affiliation   = $panel.find('[name="affiliation[]"]');
+					$is_corres    = $panel.find('[name="is_corres[]"]');
+	
+	            // Remove element containing the option
+	            $panel.remove();
+	
+	            // Remove field
+	            $('#abstract_form').bootstrapValidator('removeField', $first_name);
+	            $('#abstract_form').bootstrapValidator('removeField', $last_name);
+	            $('#abstract_form').bootstrapValidator('removeField', $email);
+	            $('#abstract_form').bootstrapValidator('removeField', $degree);
+	            $('#abstract_form').bootstrapValidator('removeField', $affiliation);
+	            $('#abstract_form').bootstrapValidator('removeField', $is_corres);
+	        })
+	        
+	        .on('success.form.bv', function(e) {
+            	$('#author_template').remove();
+            	
+            	var radios = $('[name="is_corres[]"]').each(function(i){
+            		$(this).val(i);
+            	});
+            	
+        	})
+			
+		});
+
    	</script>
 
 </body>
