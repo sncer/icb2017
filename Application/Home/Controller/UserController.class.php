@@ -171,8 +171,9 @@ class UserController extends Controller {
 				exit;
 			}
 		}
-
 		
+		//发送电子邮件
+		sendMail();
 
 		//如果操作成功
 		if($author_id > 0 && $abstract_id > 0){
