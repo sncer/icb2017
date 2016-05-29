@@ -4,13 +4,16 @@ use Think\Controller;
 class UserController extends CommonController {
 	
 	public function _initialize() {
+		
+		parent::_initialize();
+		
 		switch ($this->getMethodName()){
             case 'login':break;
 			case 'user_login':break;
             case 'register':break;
             case 'user_register':break;
             case 'verify_email':break;
-            default:parent::_initialize();
+            default:parent::_checkLogin();
         }
         
     }

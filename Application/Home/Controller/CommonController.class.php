@@ -7,7 +7,11 @@ class CommonController extends Controller {
         //判断用户是否已经登录
         if (!isset($_SESSION['admin_id'])) {
             $this->error('Please sign in first', U('Admin/admin_login'), 2);
-        }elseif (!isset($_SESSION['user'])) {
+        }
+	}
+	/* 验证用户是否登录 */
+	public function _checkLogin(){
+		if (!isset($_SESSION['user'])) {
         	$this->error('Please sign in first', U('User/login'), 2);
         }
 	}
