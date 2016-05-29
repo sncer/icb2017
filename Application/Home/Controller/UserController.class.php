@@ -1,7 +1,20 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class UserController extends Controller {
+class UserController extends CommonController {
+	
+	public function _initialize() {
+		switch ($this->getMethodName()){
+            case 'login':break;
+			case 'user_login':break;
+            case 'register':break;
+            case 'user_register':break;
+            case 'verify_email':break;
+            default:parent::_initialize();
+        }
+        
+    }
+	
 	//打开注册页面
 	public function register(){
 		$this->assign("title_list",C('TITLE_LIST'));
@@ -47,9 +60,27 @@ class UserController extends Controller {
 			$this->display('Public:500');
 			exit;
 		}
+	}
+	//验证邮箱是否已经存在
+	public function verify_email(){
+		$email = $_POST['email'];
+		// 实例化User模型
+		$User = M('User');
+		// Check email existence
+		$res = $User->where("email = '".$email."'")->find();
 		
+		if($res){
+			$isAvailable = false;
+		}else{
+			$isAvailable = true;
+		}
+		// Finally, return a JSON
+		echo json_encode(array(
+		    'valid' => $isAvailable,
+		));
 		
 	}
+
 	//打开登录页面
 	public function login(){
 		$this->display();
@@ -68,17 +99,27 @@ class UserController extends Controller {
 		$result = $User->where("email = '".$email."' and password = md5(concat(md5('".$password."'),salt))")->find();
 		if($result){
 			session('user',$result);
-			$this->assign('user',$result);
-			$this->display('User:dashboard');
+			$isAvailable = true;
 		}else{
-			$this->display('Public:500');
-			exit;
+			$isAvailable = false;
 		}
+		
+		echo json_encode(array(
+		    'valid' => $isAvailable,
+		));
 		
 	}
 	//打开后台管理主页面
 	public function dashboard(){
 		$user = session('user');
+		$user_id = $user['user_id'];
+		
+		//查询该用户提交的摘要
+		$Abstract = M('Abstract');
+		
+		$abstracts = $Abstract->order("created_time")->where("user_id = $user_id")->select();
+		
+		$this->assign('abstracts',$abstracts);
 		$this->assign('user',$user);
 		$this->display();
 	}
@@ -171,18 +212,43 @@ class UserController extends Controller {
 				exit;
 			}
 		}
+		//获取邮件地址
+		$toAddress = $user['email'];
+		if(empty($toAddress)){
+			$Abstract->rollback();
+			$this->display('Public:500');
+			exit;
+		}
+		//邮件主题
+		$subject = "Submission Initiated";
+		$title = $_POST['title'];
+		//邮件正文
+		$htmlBody = "Your submission for 6th International Conference on Biorefinery has been initiated.<br><br>".
+			"This message serves as confirmation that your submission was received as noted below:<br>".
+			"Title:	$title.<br><br>".
+			"Thank you!";
 		
 		//发送电子邮件
-		sendMail();
-
+		$response = sendMail($toAddress,$subject,$htmlBody);
+		
 		//如果操作成功
 		if($author_id > 0 && $abstract_id > 0){
 			//提交事务
 			$Abstract->commit(); 
 			$this->success('Submit abstract successfully!', 'dashboard',2);
+		}else{
+			$Abstract->rollback();
+			$this->display('Public:500');
+			exit;
 		}
 		
 		
+	}
+	//用户注销
+	public function logout(){
+		//清除session
+		session('user',null);
+		$this->success('Logout successfully！', U('Index/index'),2);
 	}
 	
 	

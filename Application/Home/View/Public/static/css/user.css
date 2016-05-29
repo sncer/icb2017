@@ -1,12 +1,25 @@
+
+
 .header .jumbotron{
 	height: 179px;
     background: url(../img/header_img.png) no-repeat center top;
     background-size: 100% auto;
     border-radius: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
+@media screen and (max-width: 992px) {
+    .header .jumbotron{
+    	height: 130px;
+    }
+}
+.main{
+	margin-top: 30px;
+}
+
 .mark{
 	color: red !important;
-	background-color: white !important;
+	background-color: transparent !important;
 }
 
 .form-group button{
@@ -19,3 +32,4 @@
 .hide{
 	display: none;
 }
+

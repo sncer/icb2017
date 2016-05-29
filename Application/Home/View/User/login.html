@@ -11,6 +11,7 @@
 		</div>
 		<div class="container main ">
 			<form id="login_form" class="form-horizontal col-md-8 col-md-offset-2" action="user_login" method="post">
+				<div id="alert_dialog" style="display: none;" class="alert alert-danger" role="alert">Email or password is wrong!</div>
 				<div class="form-group">
 					<label for="email" class="col-sm-3 control-label">Email Address</label>
 					<div class="col-sm-8">
@@ -28,6 +29,7 @@
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-8 text-center">
 						<button type="submit" class="btn btn-primary">Login</button>
+						<a href="{:U('User/register')}" class="btn btn-default">Register</a>
 					</div>
 				</div>
 				
@@ -42,30 +44,6 @@
 		            valid: 'glyphicon glyphicon-ok',
 		            invalid: 'glyphicon glyphicon-remove',
 		            validating: 'glyphicon glyphicon-refresh'
-		        },
-		        submitHandler: function(validator, form, submitButton) {
-		            $.post(form.attr('action'), form.serialize(), function(result) {
-		                // The result is a JSON formatted by your back-end
-		                // I assume the format is as following:
-		                //  {
-		                //      valid: true,          // false if the account is not found
-		                //      username: 'Username', // null if the account is not found
-		                //  }
-		                if (result.valid == true || result.valid == 'true') {
-		                    // You can reload the current location
-		                    window.location.reload();
-		
-		                    // Or use Javascript to update your page, such as showing the account name
-		                    // $('#welcome').html('Hello ' + result.username);
-		                } else {
-		                    // The account is not found
-		                    // Show the errors
-		                    $('#errors').html('The account is not found').removeClass('hide');
-		
-		                    // Enable the submit buttons
-		                    $('#login_form').bootstrapValidator('disableSubmitButtons', false);
-		                }
-		            }, 'json');
 		        },
 		        fields: {
 		        	
@@ -88,7 +66,36 @@
 		                }
 		            }
 		        }
-		    });
+		    })
+			.on('status.field.bv', function(e, data) {
+				$("#alert_dialog").hide(200);
+				
+	        })
+			.on('success.form.bv', function(e) {
+	            // Prevent form submission
+	            e.preventDefault();
+				
+	            // Get the form instance
+	            var $form = $(e.target);
+	
+	            // Get the BootstrapValidator instance
+	            var bv = $form.data('bootstrapValidator');
+				
+	            // Use Ajax to submit form data
+	            $.post($form.attr('action'), $form.serialize(), function(result) {
+	                if (result.valid == true || result.valid == 'true') {
+	                	
+	                    window.location.href = "{:U('User/dashboard')}";
+	                    
+	                } else {
+	                    // The account is not found
+	                    // Show the errors
+						$("#alert_dialog").show(200);
+	                    // Enable the submit buttons
+	                    $('#login_form').bootstrapValidator('disableSubmitButtons', false);
+	                }
+	            }, 'json');
+       		});
 		});
 			
 

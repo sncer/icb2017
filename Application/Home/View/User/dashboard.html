@@ -22,6 +22,44 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
+                <div class="row">
+                	<div class="panel panel-default">
+                        <div class="panel-heading">
+                            Submitted Abstract
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <empty name="abstracts">
+                            	<p>You have not submitted your abstracts yet, click <a href="{:U('User/submit_abstract')}">here</a> to submit now!</p>
+                            <else />
+                            	<div class="table-responsive">
+	                                <table class="table table-striped table-bordered table-hover">
+	                                    <thead>
+	                                        <tr>
+	                                            <th>#</th>
+	                                            <th>Title</th>
+	                                            <th>Status</th>
+	                                            <th>Submission Time</th>
+	                                        </tr>
+	                                    </thead>
+	                                    <tbody>
+	                                        <volist name="abstracts" id="abstract">
+	                                        	<tr>
+		                                            <td>{$i}</td>
+		                                            <td>{$abstract.title}</td>
+		                                            <td>{$abstract.status}</td>
+		                                            <td>{$abstract.created_time}</td>
+		                                        </tr>
+	                                        </volist>
+	                                    </tbody>
+	                                </table>
+	                            </div>
+	                            <!-- /.table-responsive -->
+                            </empty>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                </div>
             </div>
             <!-- /.container-fluid -->
         </div>
