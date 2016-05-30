@@ -16,6 +16,21 @@ return array(
 		"4" => "Mrs.",
 		"5" => "Ms."
 	),
+	//报告形式列表
+	'FORM_LIST' => array(
+		"1" => "Poster presentation",
+		"2" => "Oral presentation"
+	),
+	//主题列表
+	'TOPIC_LIST' => array(
+		"1"	=> "Feed stocks",
+		"2"	=> "Bio-based materials and chemicals",
+		"3"	=> "Pretreatment",
+		"4"	=> "Synthetic biology and platform technology",
+		"5"	=> "Conversion technologies",
+		"6"	=> "Integrated assessments and evaluation",
+		"7"	=> "Others"
+	),
 	
 	//国家列表
 	'COUNTRY_LIST' => array(

@@ -25,7 +25,7 @@
                 <div class="row">
                 	<div class="panel panel-default">
                         <div class="panel-heading">
-                            Submitted Abstract
+                            Your Submitted Abstract(s)
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -38,6 +38,8 @@
 	                                        <tr>
 	                                            <th>#</th>
 	                                            <th>Title</th>
+	                                            <th>Topic</th>
+	                                            <th>Form</th>
 	                                            <th>Status</th>
 	                                            <th>Submission Time</th>
 	                                        </tr>
@@ -46,7 +48,9 @@
 	                                        <volist name="abstracts" id="abstract">
 	                                        	<tr>
 		                                            <td>{$i}</td>
-		                                            <td>{$abstract.title}</td>
+		                                            <td>{$abstract.full_title}</td>
+		                                            <td><php>echo $topic_list[$abstract['topic']]</php></td>
+		                                            <td><php>echo $form_list[$abstract[form]]</php></td>
 		                                            <td>{$abstract.status}</td>
 		                                            <td>{$abstract.created_time}</td>
 		                                        </tr>

@@ -19,5 +19,26 @@
 	    $request->setHtmlBody($htmlBody);        
 	    $response = $client->getAcsResponse($request);    
 	    return $response;
-	}           
+	}  
+	
+	
+	/*
+	 * 重命名上传文件
+	 * 传入参数：主题序号，名，姓
+	 * 返回格式：Feed_Kong.W_1464616722.doc
+	 */
+    function getFileName($topic,$first_name,$last_name){
+    	$topic_arr = array(
+			"1"	=> "Feed",
+			"2"	=> "Bio-based",
+			"3"	=> "Pretreatment",
+			"4"	=> "Synthetic",
+			"5"	=> "Conversion",
+			"6"	=> "Integrated",
+			"7"	=> "Others"
+		);
+		$file_name = $topic_arr["$topic"]."_".ucfirst($last_name).".".substr(ucfirst($first_name), 0, 1)."_".time();
+		
+		return str_replace(" ","_",$file_name);
+    }         
         
