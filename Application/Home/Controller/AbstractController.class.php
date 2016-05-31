@@ -84,8 +84,8 @@ class AbstractController extends CommonController {
 		$upload = new \Think\Upload();		// 实例化上传类    
 		$upload->maxSize   =     2097152 ;	// 设置附件上传大小为2M    
 		$upload->exts      =     array('doc', 'docx');	// 设置附件上传类型  
-		$upload->rootPath  =      './Public/'; 	// 设置附件上传根目录  
-		$upload->savePath  =      './Uploads/'; 	// 设置附件上传目录
+		$upload->rootPath  =      './Public/Uploads'; 	// 设置附件上传根目录  
+		$upload->savePath  =      '/Abstracts/'; 	// 设置附件上传目录
 		$upload->saveName  =      array('getFileName',array($data['type'],$data['topic'],$user['first_name'],$user['last_name'])); 	// 设置上传文件名
 		$upload->autoSub = FALSE;		// 关闭子目录保存
 		// 上传单个文件     
@@ -151,8 +151,8 @@ class AbstractController extends CommonController {
 		$upload = new \Think\Upload();		// 实例化上传类    
 		$upload->maxSize   =     2097152 ;	// 设置附件上传大小为2M    
 		$upload->exts      =     array('doc', 'docx');	// 设置附件上传类型  
-		$upload->rootPath  =      './Public/'; 	// 设置附件上传根目录  
-		$upload->savePath  =      './Uploads/'; 	// 设置附件上传目录
+		$upload->rootPath  =      './Public/Uploads'; 	// 设置附件上传根目录  
+		$upload->savePath  =      '/Abstracts/'; 	// 设置附件上传目录
 		$upload->saveName  =      array('getFileName',array($data['type'],$data['topic'],$user['first_name'],$user['last_name'])); 	// 设置上传文件名
 		$upload->autoSub = FALSE;		// 关闭子目录保存
 		// 上传单个文件     
