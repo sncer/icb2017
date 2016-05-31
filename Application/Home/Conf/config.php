@@ -16,8 +16,8 @@ return array(
 		"4" => "Mrs.",
 		"5" => "Ms."
 	),
-	//报告形式列表
-	'FORM_LIST' => array(
+	//报告类型列表
+	'TYPE_LIST' => array(
 		"1" => "Poster presentation",
 		"2" => "Oral presentation"
 	),

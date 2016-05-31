@@ -39,7 +39,7 @@
 	                                            <th>#</th>
 	                                            <th>Title</th>
 	                                            <th>Topic</th>
-	                                            <th>Form</th>
+	                                            <th>Type</th>
 	                                            <th>Status</th>
 	                                            <th>Submission Time</th>
 	                                        </tr>
@@ -50,7 +50,7 @@
 		                                            <td>{$i}</td>
 		                                            <td>{$abstract.full_title}</td>
 		                                            <td><php>echo $topic_list[$abstract['topic']]</php></td>
-		                                            <td><php>echo $form_list[$abstract[form]]</php></td>
+		                                            <td><php>echo $type_list[$abstract['type']]</php></td>
 		                                            <td>Initiated</td>
 		                                            <td>{$abstract.created_time}</td>
 		                                        </tr>

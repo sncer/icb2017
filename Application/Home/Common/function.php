@@ -27,7 +27,7 @@
 	 * 传入参数：主题序号，名，姓
 	 * 返回格式：Feed_Kong.W_1464616722.doc
 	 */
-    function getFileName($topic,$first_name,$last_name){
+    function getFileName($type,$topic,$first_name,$last_name){
     	$topic_arr = array(
 			"1"	=> "Feed",
 			"2"	=> "Bio-based",
@@ -37,7 +37,11 @@
 			"6"	=> "Integrated",
 			"7"	=> "Others"
 		);
-		$file_name = $topic_arr["$topic"]."_".ucfirst($last_name).".".substr(ucfirst($first_name), 0, 1)."_".time();
+		$type_arr = array(
+			"1" => "Poster",
+			"2" => "Oral"
+		);
+		$file_name = $type_arr["$type"]."_".$topic_arr["$topic"]."_".ucfirst($last_name).".".substr(ucfirst($first_name), 0, 1)."_".time();
 		
 		return str_replace(" ","_",$file_name);
     }         

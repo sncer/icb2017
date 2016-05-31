@@ -22,6 +22,7 @@ class UserController extends CommonController {
 	
 	//打开注册页面
 	public function register(){
+		
 		$this->assign("title_list",C('TITLE_LIST'));
 		$this->assign("country_list",C('COUNTRY_LIST'));
 		
@@ -90,14 +91,14 @@ class UserController extends CommonController {
 			$user = session('user');
 			$this->assign('user',$user);
 			$this->assign('topic_list',C('TOPIC_LIST'));
-			$this->assign('form_list',C('FORM_LIST'));
+			$this->assign('type_list',C('TYPE_LIST'));
 			$this->display("User/submit_abstract");
 		}else{
 			//如果未登录，则进入访客提交摘要页面
 			$this->assign("title_list",C('TITLE_LIST'));
 			$this->assign("country_list",C('COUNTRY_LIST'));
 			$this->assign("topic_list",C('TOPIC_LIST'));
-			$this->assign("form_list",C('FORM_LIST'));
+			$this->assign("type_list",C('TYPE_LIST'));
 	    	$this->display("User/register_abstract");
 		}
 		
@@ -144,7 +145,7 @@ class UserController extends CommonController {
 		unset($data);
 		$data['full_title'] = trim($_POST['full_title']);
 		$data['topic'] = $_POST['topic'];
-		$data['form'] = $_POST['form'];
+		$data['type'] = $_POST['type'];
 		//默认状态为1，待审核
 		$data['status'] = 1;
 		$data['created_time'] = date("Y-m-d H:i:s");
@@ -156,7 +157,7 @@ class UserController extends CommonController {
 		$upload->exts      =     array('doc', 'docx');	// 设置附件上传类型  
 		$upload->rootPath  =      './Public/'; 	// 设置附件上传根目录  
 		$upload->savePath  =      './Uploads/'; 	// 设置附件上传目录
-		$upload->saveName  =      array('getFileName',array($data['topic'],$user['first_name'],$user['last_name'])); 	// 设置上传文件名
+		$upload->saveName  =      array('getFileName',array($data['type'],$data['topic'],$user['first_name'],$user['last_name'])); 	// 设置上传文件名
 		$upload->autoSub = FALSE;		// 关闭子目录保存
 		// 上传单个文件     
 		$info   =   $upload->uploadOne($_FILES['abstract_file']);
@@ -203,7 +204,14 @@ class UserController extends CommonController {
 
 	//打开登录页面
 	public function login(){
-		$this->display();
+		
+		//如果已登录，则直接跳转到管理系统内的dashboard页面
+		if(session('?user')){
+			$this->success('You have already logined!', U('User/dashboard'),2);
+		}else{
+			$this->display();
+		}
+
 	}
 	//用户登录操作
 	public function user_login(){
@@ -241,7 +249,7 @@ class UserController extends CommonController {
 		$this->assign('abstracts',$abstracts);
 		$this->assign('user',$user);
 		$this->assign('topic_list',C('TOPIC_LIST'));
-		$this->assign('form_list',C('FORM_LIST'));
+		$this->assign('type_list',C('TYPE_LIST'));
 		$this->display();
 	}
 	//打开空白页
@@ -253,7 +261,7 @@ class UserController extends CommonController {
 		$user = session('user');
 		$this->assign('user',$user);
 		$this->assign('topic_list',C('TOPIC_LIST'));
-		$this->assign('form_list',C('FORM_LIST'));
+		$this->assign('type_list',C('TYPE_LIST'));
 		$this->display();
 	}
 	//用户提交摘要操作
@@ -261,7 +269,7 @@ class UserController extends CommonController {
 		$user = session('user');
 		$data['full_title'] = trim($_POST['full_title']);
 		$data['topic'] = $_POST['topic'];
-		$data['form'] = $_POST['form'];
+		$data['type'] = $_POST['type'];
 		//默认状态为1，待审核
 		$data['status'] = 1;
 		$data['created_time'] = date("Y-m-d H:i:s");
@@ -273,7 +281,7 @@ class UserController extends CommonController {
 		$upload->exts      =     array('doc', 'docx');	// 设置附件上传类型  
 		$upload->rootPath  =      './Public/'; 	// 设置附件上传根目录  
 		$upload->savePath  =      './Uploads/'; 	// 设置附件上传目录
-		$upload->saveName  =      array('getFileName',array($data['topic'],$user['first_name'],$user['last_name'])); 	// 设置上传文件名
+		$upload->saveName  =      array('getFileName',array($data['type'],$data['topic'],$user['first_name'],$user['last_name'])); 	// 设置上传文件名
 		$upload->autoSub = FALSE;		// 关闭子目录保存
 		// 上传单个文件     
 		$info   =   $upload->uploadOne($_FILES['abstract_file']);

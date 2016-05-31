@@ -120,18 +120,18 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="form">Form<span class="mark">*</span></label>
+							<label class="col-sm-4 control-label" for="type">Presentation type<span class="mark">*</span></label>
 							<div class="col-sm-8">
-								<select class="form-control" id="form" name="form">
+								<select class="form-control" id="type" name="type">
 									<option value="">-- Select One --</option>
-									<volist name="form_list" id="form">
-										<option value="{$key}">{$form}</option>
+									<volist name="type_list" id="type">
+										<option value="{$key}">{$type}</option>
 									</volist>
 								</select>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="abstract_file">Abstract input<span class="mark">*</span></label>
+							<label class="col-sm-4 control-label" for="abstract_file">Abstract upload<span class="mark">*</span></label>
 							<div class="col-sm-8">
 								<input type="file" id="abstract_file" name="abstract_file">
 								<p class="help-block">Please select a Word file (xxx.doc or xxx.docx) which is smaller than 2 MB in size.</p>
@@ -271,10 +271,10 @@
 		                    }
 		                }
 		            },
-		            form: {
+		            type: {
 		                validators: {
 		                    notEmpty: {
-		                        message: 'The form is required'
+		                        message: 'The type is required'
 		                    }
 		                }
 		            },

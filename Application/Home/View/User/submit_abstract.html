@@ -34,16 +34,16 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="form">Form<span class="mark">*</span></label>
-						<select class="form-control" id="form" name="form">
+						<label for="form">Presentation type<span class="mark">*</span></label>
+						<select class="form-control" id="type" name="type">
 							<option value="">-- Select One --</option>
-							<volist name="form_list" id="form">
-								<option value="{$key}">{$form}</option>
+							<volist name="type_list" id="type">
+								<option value="{$key}">{$type}</option>
 							</volist>
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="abstract_file">Abstract input<span class="mark">*</span></label>
+						<label for="abstract_file">Abstract upload<span class="mark">*</span></label>
 						<input type="file" id="abstract_file" name="abstract_file">
 						<p class="help-block">Please select a Word file (xxx.doc or xxx.docx) which is smaller than 2 MB in size.</p>
 					</div>
@@ -86,10 +86,10 @@
 		                    }
 		                }
 		            },
-		            form: {
+		            type: {
 		                validators: {
 		                    notEmpty: {
-		                        message: 'The form is required'
+		                        message: 'The type is required'
 		                    }
 		                }
 		            },
@@ -110,60 +110,6 @@
 		        }
 		    })
 			
-			// Add button click handler
-	        .on('click', '.btn_add_author', function() {
-	            var $template = $('#author_template'),
-	                $clone    = $template
-	                                .clone()
-	                                .removeClass('hide')
-	                                .removeAttr('id')
-	                                .insertBefore($template),
-	                $first_name   = $clone.find('[name="first_name[]"]');
-					$last_name   = $clone.find('[name="last_name[]"]');
-					$email   = $clone.find('[name="email[]"]');
-					$degree   = $clone.find('[name="degree[]"]');
-					$affiliation   = $clone.find('[name="affiliation[]"]');
-					$is_corres    = $clone.find('[name="is_corres[]"]');
-	            // Add new field
-	            $('#abstract_form').bootstrapValidator('addField', $first_name);
-	            $('#abstract_form').bootstrapValidator('addField', $last_name);
-	            $('#abstract_form').bootstrapValidator('addField', $email);
-	            $('#abstract_form').bootstrapValidator('addField', $degree);
-	            $('#abstract_form').bootstrapValidator('addField', $affiliation);
-	            $('#abstract_form').bootstrapValidator('addField', $is_corres);
-	        })
-	        
-			// Remove button click handler
-	        .on('click', '.btn_delete_author', function() {
-	            var $panel    = $(this).parents('.panel'),
-	            
-	                $first_name   = $panel.find('[name="first_name[]"]');
-					$last_name   = $panel.find('[name="last_name[]"]');
-					$email   = $panel.find('[name="email[]"]');
-					$degree   = $panel.find('[name="degree[]"]');
-					$affiliation   = $panel.find('[name="affiliation[]"]');
-					$is_corres    = $panel.find('[name="is_corres[]"]');
-	
-	            // Remove element containing the option
-	            $panel.remove();
-	
-	            // Remove field
-	            $('#abstract_form').bootstrapValidator('removeField', $first_name);
-	            $('#abstract_form').bootstrapValidator('removeField', $last_name);
-	            $('#abstract_form').bootstrapValidator('removeField', $email);
-	            $('#abstract_form').bootstrapValidator('removeField', $degree);
-	            $('#abstract_form').bootstrapValidator('removeField', $affiliation);
-	            $('#abstract_form').bootstrapValidator('removeField', $is_corres);
-	        })
-	        
-	        .on('success.form.bv', function(e) {
-            	$('#author_template').remove();
-            	
-            	var radios = $('[name="is_corres[]"]').each(function(i){
-            		$(this).val(i);
-            	});
-            	
-        	})
 			
 		});
 
