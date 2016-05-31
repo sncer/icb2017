@@ -180,39 +180,24 @@ class UserController extends CommonController {
 		if(!$abstract_id){
 			// 事务回滚
 			$User->rollback();
-			$this->display('Public:500');
-		}
-		
-		//获取邮件地址
-		$toAddress = $user['email'];
-		if(empty($toAddress)){
-			$User->rollback();
-			$this->display('Public:500');
-		}
-		//邮件主题
-		$subject = "Submission Initiated";
-		$title = $_POST['title'];
-		//邮件正文
-		$htmlBody = "Your submission for 6th International Conference on Biorefinery has been initiated.<br><br>".
-			"This message serves as confirmation that your submission was received as noted below:<br>".
-			"Title:	$title.<br><br>".
-			"Thank you!";
-		
-		//发送电子邮件
-		$response = sendMail($toAddress,$subject,$htmlBody);
-		
-		//如果操作成功
-		if(isset($response) && $abstract_id > 0){
-			//提交事务
-			$User->commit(); 
-			$this->success('Submit abstract successfully!', U('User/dashboard'),2);
-		}else{
-			$User->rollback();
 			//删除上传文件
 			$file = $data['filepath'];
 			unlink($file);
 			$this->display('Public:500');
+		}else{
+			//提交事务
+			$User->commit(); 
+			$toAddress = $user['email'];
+			//邮件主题
+			$subject = "Submission Initiated";
+			$title = $user['title'];
+			$last_name = $user['last_name'];
+			$full_title = trim($_POST['full_title']);
+			$this->send_mail($toAddress,$subject,$title,$last_name,$full_title);
+			$this->success('Submit abstract successfully!', U('User/dashboard'),2);
 		}
+		
+		
 		
 	}
 
@@ -310,40 +295,24 @@ class UserController extends CommonController {
 		if(!$abstract_id){
 			// 事务回滚
 			$Abstract->rollback();
-			$this->display('Public:500');
-		}
-		
-		//获取邮件地址
-		$toAddress = $user['email'];
-		if(empty($toAddress)){
-			$Abstract->rollback();
-			$this->display('Public:500');
-		}
-		//邮件主题
-		$subject = "Submission Initiated";
-		$title = $_POST['title'];
-		//邮件正文
-		$htmlBody = "Your submission for 6th International Conference on Biorefinery has been initiated.<br><br>".
-			"This message serves as confirmation that your submission was received as noted below:<br>".
-			"Title:	$title.<br><br>".
-			"Thank you!";
-		
-		//发送电子邮件
-		$response = sendMail($toAddress,$subject,$htmlBody);
-		
-		//如果操作成功
-		if(isset($response) && $abstract_id > 0){
-			//提交事务
-			$Abstract->commit(); 
-			$this->success('Submit abstract successfully!', 'dashboard',2);
-		}else{
-			$Abstract->rollback();
 			//删除上传文件
 			$file = $data['filepath'];
 			unlink($file);
 			$this->display('Public:500');
+		}else{
+			//提交事务
+			$Abstract->commit();
+			//获取邮件地址
+			$toAddress = $user['email'];
+			//邮件主题
+			$subject = "Submission Initiated";
+			$title = $user['title'];
+			$last_name = $user['last_name'];
+			$full_title = trim($_POST['full_title']);
+			$this->send_mail($toAddress,$subject,$title,$last_name,$full_title);
+			$this->success('Submit abstract successfully!', 'dashboard',2);
+			
 		}
-		
 		
 	}
 	//用户注销
@@ -365,6 +334,19 @@ class UserController extends CommonController {
             $str.=$arr[$rand];
         }
         return $str;
+    }
+    
+    public function send_mail($toAddress,$subject,$title,$last_name,$full_title){
+		
+		//邮件正文
+		$htmlBody = "Dear $title $last_name<br><br>".
+			"Your abstract submission for 6th International Conference on Biorefinery has been initiated.<br><br>".
+			"This message serves as confirmation that your submission was received as noted below:<br>".
+			"Submission Title:	$full_title.<br><br>".
+			"Please contact us if you have any questions.";
+		
+		//发送电子邮件
+		$response = sendMail($toAddress,$subject,$htmlBody);
     }
     
     

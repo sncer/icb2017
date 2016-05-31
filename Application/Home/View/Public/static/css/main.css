@@ -259,3 +259,13 @@ img{
 	line-height: 21px;
 }
 
+.link_block{
+	height: 20x;
+    margin-bottom: 10px;
+    background-color: #006600;
+    border-radius: 0;
+}
+#menu{
+	overflow: hidden;
+	margin-bottom: 20px;
+}

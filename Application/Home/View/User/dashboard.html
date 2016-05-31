@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Welcome
-                        <small>{$user.title}&nbsp;{$user.first_name}&nbsp;{$user.last_name}</small>
+                        <small>{$user.title}&nbsp;{$user.last_name}</small>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -51,7 +51,7 @@
 		                                            <td>{$abstract.full_title}</td>
 		                                            <td><php>echo $topic_list[$abstract['topic']]</php></td>
 		                                            <td><php>echo $form_list[$abstract[form]]</php></td>
-		                                            <td>{$abstract.status}</td>
+		                                            <td>Initiated</td>
 		                                            <td>{$abstract.created_time}</td>
 		                                        </tr>
 	                                        </volist>
