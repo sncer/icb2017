@@ -5,9 +5,9 @@ class CommonController extends Controller {
 	/* 初始化方法 */
 	public function _initialize(){
         //判断用户是否已经登录
-        if (!isset($_SESSION['admin_id'])) {
-            $this->error('Please sign in first', U('Admin/admin_login'), 2);
-        }
+//      if (!isset($_SESSION['admin_id'])) {
+//          $this->error('Please sign in first', U('Admin/admin_login'), 2);
+//      }
 	}
 	/* 验证用户是否登录 */
 	public function _checkLogin(){
