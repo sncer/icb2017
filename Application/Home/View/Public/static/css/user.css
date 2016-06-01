@@ -32,4 +32,12 @@
 .hide{
 	display: none;
 }
-
+#loading{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	height: 64px;
+	font-size: 30px;
+	line-height: 64px;
+	display: none;
+}

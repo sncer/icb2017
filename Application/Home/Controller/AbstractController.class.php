@@ -88,6 +88,12 @@ class AbstractController extends CommonController {
 		$upload->savePath  =      '/Abstracts/'; 	// 设置附件上传目录
 		$upload->saveName  =      array('getFileName',array($data['type'],$data['topic'],$user['first_name'],$user['last_name'])); 	// 设置上传文件名
 		$upload->autoSub = FALSE;		// 关闭子目录保存
+		
+		//判断目标目录是否存在，不存在则新建
+		$dir = './Public/Uploads/Abstracts';
+		if(!is_dir($dir)){
+			mkdir($dir); //新建目录 
+		}
 		// 上传单个文件     
 		$info   =   $upload->uploadOne($_FILES['abstract_file']);
 		 
@@ -111,8 +117,11 @@ class AbstractController extends CommonController {
 			// 事务回滚
 			$User->rollback();
 			//删除上传文件
-			$file = $data['filepath'];
-			unlink($file);
+			$file = "./Public/Uploads".$data['filepath'];
+			if(file_exists($file)){
+				unlink($file);
+			}
+
 			$this->display('Public:500');
 		}else{
 			//提交事务
@@ -155,6 +164,12 @@ class AbstractController extends CommonController {
 		$upload->savePath  =      '/Abstracts/'; 	// 设置附件上传目录
 		$upload->saveName  =      array('getFileName',array($data['type'],$data['topic'],$user['first_name'],$user['last_name'])); 	// 设置上传文件名
 		$upload->autoSub = FALSE;		// 关闭子目录保存
+		
+		//判断目标目录是否存在，不存在则新建
+		$dir = './Public/Uploads/Abstracts';
+		if(!is_dir($dir)){
+			mkdir($dir); //新建目录 
+		}
 		// 上传单个文件     
 		$info   =   $upload->uploadOne($_FILES['abstract_file']);
 		 
@@ -176,8 +191,10 @@ class AbstractController extends CommonController {
 			// 事务回滚
 			$Abstract->rollback();
 			//删除上传文件
-			$file = $data['filepath'];
-			unlink($file);
+			$file = "./Public/Uploads".$data['filepath'];
+			if(file_exists($file)){
+				unlink($file);
+			}
 			$this->display('Public:500');
 		}else{
 			//提交事务
@@ -194,6 +211,65 @@ class AbstractController extends CommonController {
 			
 		}
 		
+	}
+
+	//摘要管理页面
+	public function manage_abstract(){
+		$user = session('user');
+		$user_id = $user['user_id'];
+		
+		//查询该用户提交的摘要
+		$Abstract = M('Abstract');
+		
+		$abstracts = $Abstract->order("created_time")->where("user_id = $user_id")->select();
+		
+		$this->assign('abstracts',$abstracts);
+		$this->assign('user',$user);
+		$this->assign('topic_list',C('TOPIC_LIST'));
+		$this->assign('type_list',C('TYPE_LIST'));
+		$this->display();
+	}
+	
+	//删除摘要
+	public function delete_abstract(){
+		$abstract_id = $_POST['abstract_id'];
+		if(!isset($abstract_id)){
+			$this->display('Public:500');
+		}
+		$user = session('user');
+		$user_id = $user['user_id'];
+		//查询该用户提交的摘要
+		$Abstract = M('Abstract');
+		//执行查询操作
+		$data = $Abstract->where("abstract_id = $abstract_id and user_id = $user_id")->find();
+		if(empty($data)){
+			$this->display('Public:500');
+			exit;
+		}
+		
+		//删除文件成功
+		$result = $Abstract->where("abstract_id = $abstract_id and user_id = $user_id")->delete();
+		if(empty($result)){
+			//删除数据失败
+			echo json_encode(array(
+		    	'result' => "Fail!",
+			));
+		}
+		
+		$file = "./Public/Uploads".$data['filepath'];
+		if(file_exists($file)){
+			//文件存在即删除
+			if(unlink($file)){
+				//删除成功
+				echo json_encode(array(
+		    		'result' => "success",
+				));
+			}
+		}else{
+			echo json_encode(array(
+		    	'result' => "File doesn't exist!",
+			));
+		}
 	}
 	
 	//发送电子邮件
@@ -224,7 +300,7 @@ class AbstractController extends CommonController {
         return $str;
     }
 	
-	
+
 	
 	
 	

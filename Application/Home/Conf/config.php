@@ -4,7 +4,8 @@ return array(
 	
 	'TMPL_PARSE_STRING' => array(
         '__STATIC__' => __ROOT__.'/Application/'.MODULE_NAME.'/View' . '/Public/static',
-        '__DOCUMENTS__' => __ROOT__.'/Application/'.MODULE_NAME.'/View' . '/Public/documents'
+        '__DOCUMENTS__' => __ROOT__.'/Application/'.MODULE_NAME.'/View' . '/Public/documents',
+        '__UPLOADS__' => __ROOT__.'/Public/Uploads'
     ),
     
 	//称谓列表
