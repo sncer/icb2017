@@ -25,9 +25,9 @@
                     	<empty name="abstracts">
                         	<p>You have not submitted your abstracts yet, click <a href="{:U('Abstract/submit_abstract')}">here</a> to submit now!</p>
                         <else />
-	                    	<div class="table-responsive">
+	                    	<div class="table-responsive" id="abstract_table">
 	                            <table class="table table-striped table-bordered table-hover">
-	                                <thead>
+	                               <thead>
 	                                    <tr>
 	                                        <th>#</th>
 	                                        <th>Title</th>
@@ -39,7 +39,7 @@
 	                                </thead>
 	                                <tbody>
 	                                    <volist name="abstracts" id="abstract">
-	                                    	<tr id="abstract_{$abstract.abstract_id}">
+	                                    	<tr id="abstract_{$abstract.abstract_id}" class="abstract_tr">
 	                                            <td>{$i}</td>
 	                                            <td>{$abstract.full_title}</td>
 	                                            <td><php>echo $topic_list[$abstract['topic']]</php></td>
@@ -47,7 +47,6 @@
 	                                            <td>Initiated</td>
 	                                            <td>
 		                                        	<a href="__UPLOADS__{$abstract.filepath}" data-toggle="tooltip" data-placement="bottom" title="Download" class="btn btn-default btn-circle"><i class="fa fa-download"></i></a>
-		                                        	<!--<a href="#" data-toggle="tooltip" data-placement="bottom" title="Edit" class="btn btn-primary btn-circle"><i class="fa fa-list"></i></a>-->
 		                                        	<button data-id="{$abstract.abstract_id}" data-toggle="tooltip" data-placement="bottom" title="Delete" type="button" class="btn btn-danger btn-circle btn_delete"><i class="fa fa-trash-o"></i></button>
 		                                        </td>
 	                                        </tr>
@@ -71,7 +70,6 @@
    	<include file="./Application/Home/View/Public/common/user_script.html" />
 	<script type="text/javascript">
 	$(function () {
-		
 		$('[data-toggle="tooltip"]').tooltip();
 		$(".btn_delete").click(function(){
 			var r=confirm("Are you sure to delete this abstract?")
@@ -105,6 +103,9 @@
             		//删除成功
             		alert("Delete successfully!");
             		$("#abstract_"+abstract_id).remove();
+            		if($(".abstract_tr").size() == 0){
+            			$("#abstract_table").html("<p>You have not submitted your abstracts yet, click <a href="+"{:U('Abstract/submit_abstract')}"+">here</a> to submit now!</p>");
+            		}
             	}else{
             		alert(res['result']);
             	}
