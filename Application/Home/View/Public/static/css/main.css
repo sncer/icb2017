@@ -261,10 +261,24 @@ img{
 .link_block{
 	height: 20x;
     margin-bottom: 10px;
-    background-color: #006600;
+    background-color: green;
     border-radius: 0;
 }
 #menu{
 	overflow: hidden;
 	margin-bottom: 20px;
+}
+.notice{
+	margin-top: 20px;
+}
+.notice .panel-heading{
+	text-align: center;
+	color: white;
+	font-size: 18px;
+	background-color: orange;
+	
+}
+.notice .panel-body{
+	font-size: 14px;
+	background-color: #f8f8f8;
 }
