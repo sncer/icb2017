@@ -49,7 +49,7 @@
 						<p>Registration will be preceded online at <a href="http://www.icb2017.org">www.icb2017.org</a>. Full registration for professionals, and students covers an abstract book and conference programme (printed), conference proceedings (electronic edition), lunches, coffee/tea in the morning and afternoon breaks, welcome buffet dinner and conference banquet during the conference. A scanned copy of a valid student ID card or a letter from the Institution will be required for student registration. Registration for accompanying persons covers lunches, welcome buffet dinner and conference banquet during the conference. </p>
 						<h4>Note:</h4>
 						<p>ICB2017 requires at least one conference registration by one of the paper co-authors for every accepted abstract. A full registration can present up to two papers.</p>
-						<div class="register_button"><b>Register </b><a class="a_button" target="_blank" href="#">HERE</a></div>
+						<div class="register_button"><b>Register </b><a class="a_button" data-toggle="modal" data-target="#myModal" href="#">HERE</a></div>
 						<!--
                         	作者：807729560@163.com
                         	时间：2016-05-08
@@ -123,6 +123,23 @@
 			</div>
 			<div id="footer">
 				
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">Notice</h4>
+					</div>
+					<div class="modal-body">
+						Conference registration will be opened after the program of CALL FOR ABSTRACT.
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
 			</div>
 		</div>
 		<include file="./Application/Home/View/Public/common/script.html" />
