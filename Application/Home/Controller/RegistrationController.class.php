@@ -72,6 +72,7 @@ class RegistrationController extends CommonController {
 			$last_name = $data['last_name'];
 			$this->account_mail($toAddress,$subject,$title,$last_name,$password);
 			//设置成功后跳转后台主页面的地址 
+			$this->assign("country_list",C('COUNTRY_LIST'));
 			$this->display('start_registration');
 		}else{
 			$this->display('Public:500');
