@@ -23,15 +23,14 @@ class RegistrationController extends CommonController {
 		
 		if(session('?user')){
 			$this->assign("country_list",C('COUNTRY_LIST'));
+			
 			$this->display('start_registration');
 		}else{
 			$this->assign("title_list",C('TITLE_LIST'));
 			$this->assign("country_list",C('COUNTRY_LIST'));
 			
-	    	$this->display();
+	    	$this->display('attendee_reg');
 		}
-		
-		
     }
 	//与会人员注册，已注册可以跳过
 	public function attendee_register(){
@@ -207,8 +206,18 @@ class RegistrationController extends CommonController {
 	
 	//打开会议注册页面
 	public function start_registration(){
-		$this->assign("country_list",C('COUNTRY_LIST'));
-    	$this->display();
+		
+		if(session('?user')){
+			$this->assign("country_list",C('COUNTRY_LIST'));
+			
+			$this->display('start_registration');
+		}else{
+			$this->assign("title_list",C('TITLE_LIST'));
+			$this->assign("country_list",C('COUNTRY_LIST'));
+			
+	    	$this->display('attendee_reg');
+		}
+		
     }
 	
 	
