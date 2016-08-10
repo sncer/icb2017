@@ -33,6 +33,26 @@ return array(
 		"7"	=> "Others"
 	),
 	
+	//与会人员类型列表
+	'REFER_TYPE_LIST' => array(
+		"1"	=> "Academician/ Government Employee",
+		"2"	=> "Industrial Partner",
+		"3"	=> "Students",
+		"4"	=> "Accompanying person"
+	),
+	
+	//付费链接
+	'PAYMENT_URL_LIST' => array(
+		"1"	=> "https://uccheckout.canterbury.ac.nz/Checkout/Checkout.aspx?Reference=ICB2017p1",
+		"2"	=> "https://uccheckout.canterbury.ac.nz/Checkout/Checkout.aspx?Reference=ICB2017p2",
+		"3"	=> "https://uccheckout.canterbury.ac.nz/Checkout/Checkout.aspx?Reference=ICB2017p3",
+		"4"	=> "https://uccheckout.canterbury.ac.nz/Checkout/Checkout.aspx?Reference=ICB2017p4",
+		"5"	=> "https://uccheckout.canterbury.ac.nz/Checkout/Checkout.aspx?Reference=ICB2017p5",
+		"6"	=> "https://uccheckout.canterbury.ac.nz/Checkout/Checkout.aspx?Reference=ICB2017p6",
+		"7"	=> "https://uccheckout.canterbury.ac.nz/Checkout/Checkout.aspx?Reference=ICB2017p7",
+		"8" => "https://uccheckout.canterbury.ac.nz/Checkout/Checkout.aspx?Reference=ICB2017p8"
+	),
+	
 	//国家列表
 	'COUNTRY_LIST' => array(
 		"AF" => "Afghanistan",

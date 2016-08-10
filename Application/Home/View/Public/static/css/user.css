@@ -15,6 +15,7 @@
 }
 .main{
 	margin-top: 30px;
+	margin-bottom: 100px;
 }
 
 .mark{
@@ -40,4 +41,15 @@
 	font-size: 30px;
 	line-height: 64px;
 	display: none;
+}
+
+.input-group[class*=col-] {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.error_message{
+	margin-top: 5px;
+	display: none;
+	color: #a94442;
 }

@@ -9,13 +9,20 @@
 
 			</div>
 		</div>
-		<div class="container main ">
-			<h1 class="text-center">Thank you for registration！</h1>
-			<br>
-			<p class="lead text-center">This page is under construction...</p>
-			<p class="text-center">
-				<a class="btn btn-primary" href="http://www.icb2017.org">Reutrn to Home Page</a>
-			</p>
+		<div class="container main">
+			<div class="col-md-8 col-md-offset-2">
+				<h1 class="page-header">Thank you for the registration！</h1>
+				<br />
+				<p class="lead">Your Reference Number is <strong>{$refer_no}</strong>.</p>
+				<p class="lead">Your Attendee Category is <strong>{$refer_type_list[$refer_type]}</strong>.</p>
+				<p class="lead">Please click the payment URL below to pay for the money:</p>
+				<p><a target="_blank" href="{$payment_url}">{$payment_url}</a>.</p>
+				<br />
+				<p class="text-center">
+					<a class="btn btn-primary" href="http://www.icb2017.org">Reutrn to Home Page</a>
+				</p>
+			</div>
+			
 
 		</div>
 		<include file="./Application/Home/View/Public/common/user_script.html" />
