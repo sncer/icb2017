@@ -11,15 +11,119 @@
 		</div>
 		<div class="container main">
 			<div class="col-md-8 col-md-offset-2">
-				<h1 class="page-header">Thank you for the registration！</h1>
-				<br />
-				<p class="lead">Your Reference Number is <strong>{$refer_no}</strong>.</p>
-				<p class="lead">Your Attendee Category is <strong>{$refer_type_list[$refer_type]}</strong>.</p>
+				<h1 class="page-header" style="margin-top: 0;">Thank you for the registration！</h1>
+				<h2 class="text-center">Attendee Information</h2>
+				<table class="table table-condensed">
+					<tbody>
+						<tr>
+							<th scope="row">Reference Number</th>
+							<td>{$refer_no}</td>
+						</tr>
+						<tr>
+							<th scope="row">Attendee Category</th>
+							<td>{$refer_type_list[$refer_type]}</td>
+						</tr>
+						<tr>
+							<th scope="row">First Name</th>
+							<td>{$user["first_name"]}</td>
+						</tr>
+						<tr>
+							<th scope="row">Last Name</th>
+							<td>{$user["last_name"]}</td>
+						</tr>
+						<tr>
+							<th scope="row">Email Address</th>
+							<td>{$user["email"]}</td>
+						</tr>
+						<tr>
+							<th scope="row">Affiliation</th>
+							<td>{$user["affiliation"]}</td>
+						</tr>
+						<tr>
+							<th scope="row">Address</th>
+							<td>{$user["address"]}</td>
+						</tr>
+						<tr>
+							<th scope="row">Zip (Postal Code)</th>
+							<td>{$user["zip"]}</td>
+						</tr>
+						<tr>
+							<th scope="row">City</th>
+							<td>{$user["city"]}</td>
+						</tr>
+						<tr>
+							<th scope="row">Country</th>
+							<td>{$user["country"]}</td>
+						</tr>
+					</tbody>
+				</table>
+				<hr />
+				
+				<h2 class="text-center">Payment</h2>
 				<p class="lead">Please click the payment URL below to pay for the money:</p>
 				<p><a target="_blank" href="{$payment_url}">{$payment_url}</a>.</p>
 				<br />
+				
+				<hr />
+				<notempty name="visa">
+					<h2 class="text-center">Invitation Letter Information</h2>
+					<table class="table table-condensed">
+						<tbody>
+							<tr>
+								<th scope="row">Full Name (like on passport)</th>
+								<td>{$visa["full_name"]}</td>
+							</tr>
+							<tr>
+								<th scope="row">Street and Number (personal address)</th>
+								<td>{$visa["address"]}</td>
+							</tr>
+							<tr>
+								<th scope="row">Zip Code (personal address)</th>
+								<td>{$visa["zip"]}</td>
+							</tr>
+							<tr>
+								<th scope="row">City (personal address)</th>
+								<td>{$visa["city"]}</td>
+							</tr>
+							<tr>
+								<th scope="row">Country (personal address)</th>
+								<td>{$visa["country"]}</td>
+							</tr>
+							<tr>
+								<th scope="row">Passport Number</th>
+								<td>{$visa["pass_no"]}</td>
+							</tr>
+							<tr>
+								<th scope="row">Place of Issue Passport</th>
+								<td>{$visa["pass_place"]}</td>
+							</tr>
+							<tr>
+								<th scope="row">Date of Issue Passport</th>
+								<td>{$visa["pass_date"]}</td>
+							</tr>
+							<tr>
+								<th scope="row">Date of Expiry Passport</th>
+								<td>{$visa["expiry_date"]}</td>
+							</tr>
+							<tr>
+								<th scope="row">Date of Birth</th>
+								<td>{$visa["birth_date"]}</td>
+							</tr>
+							<tr>
+								<th scope="row">Place of Birth</th>
+								<td>{$visa["birth_place"]}</td>
+							</tr>
+							<tr>
+								<th scope="row">Country of Birth</th>
+								<td>{$visa["birth_country"]}</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr />
+				</notempty>
 				<p class="text-center">
 					<a class="btn btn-primary" href="http://www.icb2017.org">Reutrn to Home Page</a>
+					<a class="btn btn-default" href="{:U('Registration/new_reg')}">Create New Registration</a>
 				</p>
 			</div>
 			

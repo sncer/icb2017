@@ -13,6 +13,7 @@ class RegistrationController extends CommonController {
 			case 'attendee_register':break;
 			case 'start_registration':break;
 			case 'thanks':break;
+			case 'new_reg':break;
             default:parent::_checkLogin();
         }
         
@@ -21,9 +22,19 @@ class RegistrationController extends CommonController {
 	//打开会议注册的注册页面，已经登录的用户可以跳过
 	public function attendee_reg(){
 		
-		if(session('?user')){
+			$this->assign("title_list",C('TITLE_LIST'));
 			$this->assign("country_list",C('COUNTRY_LIST'));
 			
+	    	$this->display('attendee_reg');
+		
+    }
+	
+	//打开会议注册页面
+	public function start_registration(){
+		
+		if(session('?user')){
+			$this->assign("country_list",C('COUNTRY_LIST'));
+			$this->assign("user",session('user'));
 			$this->display('start_registration');
 		}else{
 			$this->assign("title_list",C('TITLE_LIST'));
@@ -31,7 +42,9 @@ class RegistrationController extends CommonController {
 			
 	    	$this->display('attendee_reg');
 		}
+		
     }
+	
 	//与会人员注册，已注册可以跳过
 	public function attendee_register(){
 		$title_list = C('TITLE_LIST');
@@ -73,6 +86,7 @@ class RegistrationController extends CommonController {
 			$this->account_mail($toAddress,$subject,$title,$last_name,$password);
 			//设置成功后跳转后台主页面的地址 
 			$this->assign("country_list",C('COUNTRY_LIST'));
+			$this->assign("user",session('user'));
 			$this->display('start_registration');
 		}else{
 			$this->display('Public:500');
@@ -126,6 +140,7 @@ class RegistrationController extends CommonController {
 				$Reg->rollback();
 				$this->display('Public:500');
 			}
+			
 		}
 		if($reg_id){
 			$Reg->commit();
@@ -176,7 +191,8 @@ class RegistrationController extends CommonController {
 			$this->assign("refer_type_list",$refer_type_list);
 			$this->assign("refer_type",$data['refer_type']);
 			$this->assign("refer_no",$data['refer_no']);
-			
+			$this->assign("user",session("user"));
+			$this->assign("visa",$visa);
 			$this->display('thanks');
 		}else{
 			$Reg->rollback();
@@ -205,21 +221,7 @@ class RegistrationController extends CommonController {
 		
 	}
 	
-	//打开会议注册页面
-	public function start_registration(){
-		
-		if(session('?user')){
-			$this->assign("country_list",C('COUNTRY_LIST'));
-			
-			$this->display('start_registration');
-		}else{
-			$this->assign("title_list",C('TITLE_LIST'));
-			$this->assign("country_list",C('COUNTRY_LIST'));
-			
-	    	$this->display('attendee_reg');
-		}
-		
-    }
+	
 	
 	
 	//打开注册完成后的感谢页面
@@ -228,6 +230,11 @@ class RegistrationController extends CommonController {
 		$this->display();
 	}
 	
+	public function new_reg(){
+		//清除session
+		session('user',null);
+		$this->success('Please Wait a Moment...', U('Registration/attendee_reg'),0);
+	}
 	
 	
 	//生成随机数,用于生成salt
@@ -274,11 +281,17 @@ class RegistrationController extends CommonController {
 		$htmlBody = "Dear $title $last_name,<br><br>".
 			"Your account of 6th International Conference on Biorefinery (ICB2017) has been created automatically.<br><br>".
 			"The details of the account are below:<br>".
-			"Username:	$toAddress.<br>".
-			"Password:	$password.<br><br>".
+			"Username:	$toAddress<br>".
+			"Password:	$password<br><br>".
 			"You can login the official website of ICB2017 with the Username and Password by following the link below:<br>".
 			"<a href='http://icb2017.org/home/user/login.html' target='_blank'>http://icb2017.org/home/user/login.html</a><br><br>".
-			"Please contact us if you have any questions.";
+			"Please contact us if you have any questions.<br><br>".
+			"ICB2017 Organizing Committee<br>".
+			"Department of Chemical and Process Engineering<br>".
+			"The University of Canterbury<br>".
+			"Christchurch 8140, New Zealand<br>".
+			"Email: ICB2017@canterbury.ac.nz<br>".
+			"Website: <a href='http://www.icb2017.org' target='_blank'>www.icb2017.org</a><br>";
 		
 		//发送电子邮件
 		$response = sendMail($toAddress,$subject,$htmlBody);

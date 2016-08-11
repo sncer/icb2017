@@ -280,7 +280,13 @@ class AbstractController extends CommonController {
 			"Your abstract submission for 6th International Conference on Biorefinery has been initiated.<br><br>".
 			"This message serves as confirmation that your submission was received as noted below:<br>".
 			"Submission Title:	$full_title.<br><br>".
-			"Please contact us if you have any questions.";
+			"Please contact us if you have any questions.<br><br>".
+			"ICB2017 Organizing Committee<br>".
+			"Department of Chemical and Process Engineering<br>".
+			"The University of Canterbury<br>".
+			"Christchurch 8140, New Zealand<br>".
+			"Email: ICB2017@canterbury.ac.nz<br>".
+			"Website: <a href='http://www.icb2017.org' target='_blank'>www.icb2017.org</a><br>";
 		
 		//发送电子邮件
 		$response = sendMail($toAddress,$subject,$htmlBody);

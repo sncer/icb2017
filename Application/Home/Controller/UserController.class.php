@@ -9,6 +9,8 @@ class UserController extends CommonController {
 		
 		switch ($this->getMethodName()){
             case 'login':break;
+			case 'select':break;
+			case 'select_identity':break;
 			case 'user_login':break;
             case 'register':break;
             case 'user_register':break;
@@ -19,6 +21,33 @@ class UserController extends CommonController {
         }
         
     }
+	
+	//打开选择是否是新用户的页面
+	public function select(){
+		//获取操作流程
+		$action = $_REQUEST['action'];
+		
+		$this->assign("action",$action);
+		
+    	$this->display();
+	}
+	
+	//判断身份时候是新用户
+	public function select_identity(){
+		$identity = $_POST['identity'];
+		//获取操作流程
+		$action = $_REQUEST['action'];
+		$this->assign("action",$action);
+		
+		//如果是老用户，则先登录,再注册
+		if($identity == 1){
+			
+		}else{
+			
+		}
+		
+		
+	}
 	
 	//打开注册页面
 	public function register(){
