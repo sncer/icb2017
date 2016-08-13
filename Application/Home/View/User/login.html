@@ -29,8 +29,8 @@
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-8 text-center">
 						<input type="hidden" name="action" id="action" value="{$action}" />
-						<button type="submit" class="btn btn-success">Login</button>
-						<a href="{:U('User/register')}" class="btn btn-default">Register</a>
+						<button id="submitBtn" type="submit" class="btn btn-success">Login</button>
+						<a href="__MODULE__/User/register?action=reg" class="btn btn-default">Register</a>
 					</div>
 				</div>
 				
@@ -38,7 +38,9 @@
 		</div>
 		<include file="./Application/Home/View/Public/common/user_script.html" />
 		<script type="text/javascript">
-		$(document).ready(function() {
+		
+		$("#submitBtn").on("click",function(){
+			
 			$('#login_form').bootstrapValidator({
 		        message: 'This value is not valid',
 		        feedbackIcons: {
@@ -102,8 +104,10 @@
 	                }
 	            }, 'json');
        		});
+       		
+			//验证表单
+			$('#login_form').data('bootstrapValidator').validate();
 		});
-			
 
 		</script>
 	</body>
