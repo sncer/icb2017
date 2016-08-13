@@ -17,51 +17,50 @@
 					<tbody>
 						<tr>
 							<th scope="row">Reference Number</th>
-							<td>{$refer_no}</td>
+							<td>{$reg['refer_no']}</td>
 						</tr>
 						<tr>
 							<th scope="row">Attendee Category</th>
-							<td>{$refer_type_list[$refer_type]}</td>
+							<td>{$refer_type_list[$reg['refer_type']]}</td>
 						</tr>
 						<tr>
 							<th scope="row">First Name</th>
-							<td>{$user["first_name"]}</td>
+							<td>{$reg["first_name"]}</td>
 						</tr>
 						<tr>
 							<th scope="row">Last Name</th>
-							<td>{$user["last_name"]}</td>
+							<td>{$reg["last_name"]}</td>
 						</tr>
 						<tr>
 							<th scope="row">Email Address</th>
-							<td>{$user["email"]}</td>
+							<td>{$reg["email"]}</td>
 						</tr>
 						<tr>
 							<th scope="row">Affiliation</th>
-							<td>{$user["affiliation"]}</td>
+							<td>{$reg["affiliation"]}</td>
 						</tr>
 						<tr>
 							<th scope="row">Address</th>
-							<td>{$user["address"]}</td>
+							<td>{$reg["address"]}</td>
 						</tr>
 						<tr>
 							<th scope="row">Zip (Postal Code)</th>
-							<td>{$user["zip"]}</td>
+							<td>{$reg["zip"]}</td>
 						</tr>
 						<tr>
 							<th scope="row">City</th>
-							<td>{$user["city"]}</td>
+							<td>{$reg["city"]}</td>
 						</tr>
 						<tr>
 							<th scope="row">Country</th>
-							<td>{$user["country"]}</td>
+							<td>{$reg["country"]}</td>
 						</tr>
 					</tbody>
 				</table>
 				<hr />
 				
 				<h2 class="text-center">Payment</h2>
-				<p class="lead">Please click the payment URL below to pay for the money:</p>
-				<p><a target="_blank" href="{$payment_url}">{$payment_url}</a>.</p>
+				<p class="lead">Please click <a class="btn btn-success" target="_blank" href="{$payment_url}">HRER</a> to pay for the money by credit card.</p>
 				<br />
 				
 				<hr />
@@ -122,8 +121,8 @@
 					<hr />
 				</notempty>
 				<p class="text-center">
-					<a class="btn btn-primary" href="http://www.icb2017.org">Reutrn to Home Page</a>
-					<a class="btn btn-default" href="{:U('Registration/new_reg')}">Create New Registration</a>
+					<a class="btn btn-success" href="#">See My Registration</a>
+					<a class="btn btn-default" href="http://www.icb2017.org">Reutrn to Home Page</a>
 				</p>
 			</div>
 			

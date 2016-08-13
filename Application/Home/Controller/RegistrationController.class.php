@@ -8,12 +8,12 @@ class RegistrationController extends CommonController {
 		parent::_initialize();
 		
 		switch ($this->getMethodName()){
-			case 'attendee_reg':break;
+//			case 'attendee_reg':break;
 			case 'verify_email':break;
-			case 'attendee_register':break;
-			case 'start_registration':break;
-			case 'thanks':break;
-			case 'new_reg':break;
+//			case 'attendee_register':break;
+//			case 'start_registration':break;
+//			case 'thanks':break;
+//			case 'new_reg':break;
             default:parent::_checkLogin();
         }
         
@@ -26,22 +26,6 @@ class RegistrationController extends CommonController {
 			$this->assign("country_list",C('COUNTRY_LIST'));
 			
 	    	$this->display('attendee_reg');
-		
-    }
-	
-	//打开会议注册页面
-	public function start_registration(){
-		
-		if(session('?user')){
-			$this->assign("country_list",C('COUNTRY_LIST'));
-			$this->assign("user",session('user'));
-			$this->display('start_registration');
-		}else{
-			$this->assign("title_list",C('TITLE_LIST'));
-			$this->assign("country_list",C('COUNTRY_LIST'));
-			
-	    	$this->display('attendee_reg');
-		}
 		
     }
 	
@@ -92,57 +76,92 @@ class RegistrationController extends CommonController {
 			$this->display('Public:500');
 		}
 	}
+
+	//打开会议注册页面
+	public function start_registration(){
+		//获取操作流程
+		$action = $_REQUEST['action'];
+		$this->assign("action",$action);
+		
+		$this->assign("country_list",C('COUNTRY_LIST'));
+		$this->assign("user",session('user'));
+		$this->display('start_registration');
+		
+    }
+	
 	//添加会议注册纪录
 	public function add_registration(){
-		$country_list = C('COUNTRY_LIST');
+		
+		//获取操作流程
+		$action = $_REQUEST['action'];
+		$this->assign("action",$action);
+		
 		//如果没有登录则报错
 		if(!session('?user')){
 			$this->display('Public:500');
+			
 		}
-		//获取user_id
-		$user_id = session("user")['user_id'];
+		//获取国家列表
+		$country_list = C('COUNTRY_LIST');
+		//从session中获取当前操作者的user信息
+		$user = session("user");
 		
-		$data['user_id'] =  $user_id;
+		$data['user_id'] =  $user['user_id'];
 		//会议编号
 		$data['refer_no'] = $this->gen_refer_no();
 		//与会人员身份类型
 		$data['refer_type'] = $_POST['refer_types'];
-		//缴费方式，默认为1（信用卡）
-		$data['pay_type'] = 1;
-		$data['status'] = 1;
-		$data['created_time'] = date("Y-m-d H:i:s");
+		
 		//是否需要邀请涵
 		$data['is_visa'] = $_POST['is_visa'];
+		
+		//从session中获取user信息
+		$data['title'] = $user['title'];
+		$data['first_name'] = $user['first_name'];
+		$data['last_name'] = $user['last_name'];
+		$data['email'] = $user['email'];
+		$data['affiliation'] = $user['affiliation'];
+		$data['address'] = $user['address'];
+		$data['zip'] = $user['zip'];
+		$data['city'] = $user['city'];
+		$data['country'] = $user['country'];
+		
+		//缴费方式，默认为1（信用卡）
+		$data['pay_type'] = 1;
+		//订单状态，默认为1
+		$data['status'] = 1;
+		$data['created_time'] = date("Y-m-d H:i:s");
 		
 		$Reg = M('Reg');
 		$Reg->startTrans(); 
 		$reg_id = $Reg->add($data);
 		
-		//如果需要邀请函
-		if($data['is_visa'] == 1){
-			$visa['user_id'] =  $user_id;
-			$visa['full_name'] = trim($_POST['full_name']);
-			$visa['address'] = $_POST['address'];
-			$visa['zip'] = $_POST['zip'];
-			$visa['city'] = $_POST['city'];
-			$visa['country'] = $country_list[$_POST['country']];
-			$visa['pass_no'] = $_POST['pass_no'];
-			$visa['pass_place'] = $_POST['pass_place'];
-			$visa['pass_date'] = $_POST['pass_date'];
-			$visa['expiry_date'] = $_POST['expiry_date'];
-			$visa['birth_date'] = $_POST['birth_date'];
-			$visa['birth_place'] = $_POST['birth_place'];
-			$visa['birth_country'] = $country_list[$_POST['birth_country']];
-			$visa['created_time'] = date("Y-m-d H:i:s");
-			$Visa = M('Visa');
-			$visa_id = $Visa->add($visa);
-			if(!$visa_id){
-				$Reg->rollback();
-				$this->display('Public:500');
-			}
-			
-		}
 		if($reg_id){
+			//如果需要邀请函
+			if($data['is_visa'] == 1){
+				$visa['reg_id'] =  $reg_id;
+				$visa['user_id'] =  $user['user_id'];
+				$visa['full_name'] = trim($_POST['full_name']);
+				$visa['address'] = $_POST['address'];
+				$visa['zip'] = $_POST['zip'];
+				$visa['city'] = $_POST['city'];
+				$visa['country'] = $country_list[$_POST['country']];
+				$visa['pass_no'] = $_POST['pass_no'];
+				$visa['pass_place'] = $_POST['pass_place'];
+				$visa['pass_date'] = $_POST['pass_date'];
+				$visa['expiry_date'] = $_POST['expiry_date'];
+				$visa['birth_date'] = $_POST['birth_date'];
+				$visa['birth_place'] = $_POST['birth_place'];
+				$visa['birth_country'] = $country_list[$_POST['birth_country']];
+				$visa['created_time'] = date("Y-m-d H:i:s");
+				$Visa = M('Visa');
+				$visa_id = $Visa->add($visa);
+				if(!$visa_id){
+					$Reg->rollback();
+					$this->display('Public:500');
+				}
+				
+			}
 			$Reg->commit();
 			$curr_time = time();
 			$early_time = strtotime (date("2016-11-01")); //Early Bird 截止期日
@@ -191,7 +210,7 @@ class RegistrationController extends CommonController {
 			$this->assign("refer_type_list",$refer_type_list);
 			$this->assign("refer_type",$data['refer_type']);
 			$this->assign("refer_no",$data['refer_no']);
-			$this->assign("user",session("user"));
+			$this->assign("reg",$data);
 			$this->assign("visa",$visa);
 			$this->display('thanks');
 		}else{

@@ -15,8 +15,6 @@ class UserController extends CommonController {
             case 'register':break;
             case 'user_register':break;
             case 'verify_email':break;
-			case 'register_abstract':break;
-			case 'visitor_abstract':break;
             default:parent::_checkLogin();
         }
         
@@ -26,7 +24,6 @@ class UserController extends CommonController {
 	public function select(){
 		//获取操作流程
 		$action = $_REQUEST['action'];
-		
 		$this->assign("action",$action);
 		
     	$this->display();
@@ -39,19 +36,28 @@ class UserController extends CommonController {
 		$action = $_REQUEST['action'];
 		$this->assign("action",$action);
 		
-		//如果是老用户，则先登录,再注册
-		if($identity == 1){
-			
-		}else{
+		//如果是缴费注册流程
+		if($action == "reg"){
+			//如果是老用户，则先登录；如果是新用户，则先注册
+			if($identity == 1){
+				$this->display("User:login");
+			}else{
+				$this->assign("title_list",C('TITLE_LIST'));
+				$this->assign("country_list",C('COUNTRY_LIST'));
+				$this->display("User:register");
+			}
 			
 		}
+		
 		
 		
 	}
 	
 	//打开注册页面
 	public function register(){
-		
+		//获取操作流程
+		$action = $_REQUEST['action'];
+		$this->assign("action",$action);
 		$this->assign("title_list",C('TITLE_LIST'));
 		$this->assign("country_list",C('COUNTRY_LIST'));
 		
@@ -59,6 +65,10 @@ class UserController extends CommonController {
     }
 	//用户注册操作
 	public function user_register(){
+		//获取操作流程
+		$action = $_REQUEST['action'];
+		$this->assign("action",$action);
+		
 		$title_list = C('TITLE_LIST');
 		$country_list = C('COUNTRY_LIST');
 		// 获取表单的POST数据
@@ -88,7 +98,14 @@ class UserController extends CommonController {
 			session('user',$result);
 			$this->assign('user',$result);
 			//设置成功后跳转后台主页面的地址   
-			$this->success('Register successfully!', U('User/dashboard'),2);
+			if($action = "reg"){
+				$this->assign("country_list",C('COUNTRY_LIST'));
+				
+				$this->success('Register successfully!', __MODULE__."/Registration/start_registration?action=reg",1);
+			}else{
+				$this->success('Register successfully!', U('User/dashboard'),1);
+			}
+
 		}else{
 			$this->display('Public:500');
 		}
@@ -115,10 +132,13 @@ class UserController extends CommonController {
 	
 	//打开登录页面
 	public function login(){
+		//获取操作流程
+		$action = $_REQUEST['action'];
+		$this->assign("action",$action);
 		
 		//如果已登录，则直接跳转到管理系统内的dashboard页面
 		if(session('?user')){
-			$this->success('You have already logined!', U('User/dashboard'),2);
+			$this->success('You have already logined!', U('User/dashboard'),1);
 		}else{
 			$this->display();
 		}
@@ -173,7 +193,7 @@ class UserController extends CommonController {
 	public function logout(){
 		//清除session
 		session('user',null);
-		$this->success('Logout successfully！', U('Index/index'),2);
+		$this->success('Logout successfully！', U('Index/index'),1);
 	}
 	
 	
