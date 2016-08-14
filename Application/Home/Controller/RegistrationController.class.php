@@ -127,6 +127,13 @@ class RegistrationController extends CommonController {
 		$data['created_time'] = date("Y-m-d H:i:s");
 		
 		$Reg = M('Reg');
+		// 手动进行令牌验证，防止表单重复提交
+		if (!$Reg->autoCheckToken($_POST)){
+			// 令牌验证错误
+			$this->assign("token",'false');
+			$this->display('Registration:thanks');
+			exit;
+		}
 		$Reg->startTrans(); 
 		$reg_id = $Reg->add($data);
 		

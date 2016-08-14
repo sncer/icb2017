@@ -12,6 +12,9 @@
 		<div class="container main">
 			<div class="col-md-8 col-md-offset-2">
 				<h1 class="page-header" style="margin-top: 0;">Thank you for the registration！</h1>
+				<if condition="$token eq 'false'">
+					<p class="lead">You have already registered, and don't need to register again.</p>
+				<else />
 				<h2 class="text-center">Attendee Information</h2>
 				<table class="table table-condensed">
 					<tbody>
@@ -120,9 +123,11 @@
 					</table>
 					<hr />
 				</notempty>
+					
+				</if>
 				<p class="text-center">
 					<a class="btn btn-success" href="#">See My Registration</a>
-					<a class="btn btn-default" href="http://www.icb2017.org">Reutrn to Home Page</a>
+					<a class="btn btn-default" href="http://www.icb2017.org">Reutrn to Homepage</a>
 				</p>
 			</div>
 			
