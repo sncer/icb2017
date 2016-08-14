@@ -15,6 +15,8 @@ class UserController extends CommonController {
             case 'register':break;
             case 'user_register':break;
             case 'verify_email':break;
+			case 'forget_pwd':break;
+			case 'get_new_pwd':break;
             default:parent::_checkLogin();
         }
         
@@ -82,7 +84,7 @@ class UserController extends CommonController {
 		$data['zip'] = $_POST['zip'];
 		$data['email'] = $_POST['email'];
 		$password = $_POST['password'];
-		$salt = $this->random_str(6);
+		$salt = random_str(6);
 		$data['password'] = md5(md5($password) . $salt);
 		$data['salt'] = $salt;
 		//默认值
@@ -98,7 +100,7 @@ class UserController extends CommonController {
 			session('user',$result);
 			$this->assign('user',$result);
 			//设置成功后跳转后台主页面的地址   
-			if($action = "reg"){
+			if($action == "reg"){
 				$this->assign("country_list",C('COUNTRY_LIST'));
 				
 				$this->success('Register successfully!', __MODULE__."/Registration/start_registration?action=reg",1);
@@ -168,6 +170,53 @@ class UserController extends CommonController {
 		));
 		
 	}
+	
+	//打开忘记密码页面
+	public function forget_pwd(){
+		$this->display();
+	}
+	//获取新密码，发送邮件
+	public function get_new_pwd(){
+		$email = $_POST['email'];
+		//查询email的用户
+		$User = M('User');
+		$user = $User->where("email = '$email'")->find();
+		//如果email存在，则生成新密码，然后更新用户信息，发送邮件
+		if($user){
+			//生成新密码
+			$password = random_pwd(6);
+			$salt = random_str(6);
+			$user['password'] = md5(md5($password) . $salt);
+			$user['salt'] = $salt;
+			$user['updated_time'] = date("Y-m-d H:i:s");
+			//更新用户信息
+			$res = $User->save($user); 
+			if($res){
+				//发送地址
+				$toAddress = $user['email'];  
+				//邮件主题
+				$subject = "New Password of ICB2017 Account";
+				$title = $user['title'];
+				$last_name = $user['last_name'];
+				$this->password_mail($toAddress,$subject,$title,$last_name,$password);
+				
+				$isAvailable = "success";
+				
+			}else{
+				//更新用户失败
+				$isAvailable = "fail";
+			}
+			
+		}else{
+			//邮件地址不存在
+			$isAvailable = "error";
+		}
+		
+		echo json_encode(array(
+		    'valid' => $isAvailable,
+		));
+	}
+	
 	//打开后台管理主页面
 	public function dashboard(){
 		$user = session('user');
@@ -197,19 +246,27 @@ class UserController extends CommonController {
 	}
 	
 	
-	//生成随机数,用于生成salt
-    public function random_str($length){
-        //生成一个包含 大写英文字母, 小写英文字母, 数字 的数组
-        $arr = array_merge(range(0, 9), range('a', 'z'), range('A', 'Z'));
-        $str = '';
-        $arr_len = count($arr);
-        for ($i = 0; $i < $length; $i++){
-            $rand = mt_rand(0, $arr_len-1);
-            $str.=$arr[$rand];
-        }
-        return $str;
+	//发送忘记密码的电子邮件
+	public function password_mail($toAddress,$subject,$title,$last_name,$password){
+		
+		//邮件正文
+		$htmlBody = "Dear $title $last_name,<br><br>".
+			"Your account of 6th International Conference on Biorefinery (ICB2017) has been changed. A new password has been generated randomly to replace the old one.<br><br>".
+			"The details of the account are below:<br>".
+			"Username:	$toAddress<br>".
+			"Password:	$password<br><br>".
+			"You can login the official website of ICB2017 with the Username and Password by following the link below:<br>".
+			"<a href='http://icb2017.org/home/user/login.html' target='_blank'>http://icb2017.org/home/user/login.html</a><br><br>".
+			"Please contact us if you have any questions.<br><br>".
+			"ICB2017 Organizing Committee<br>".
+			"Department of Chemical and Process Engineering<br>".
+			"The University of Canterbury<br>".
+			"Christchurch 8140, New Zealand<br>".
+			"Email: ICB2017@canterbury.ac.nz<br>".
+			"Website: <a href='http://www.icb2017.org' target='_blank'>www.icb2017.org</a><br>";
+		
+		//发送电子邮件
+		$response = sendMail($toAddress,$subject,$htmlBody);
     }
-    
-	
 	
 }

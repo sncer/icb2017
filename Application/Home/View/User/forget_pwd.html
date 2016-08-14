@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<include file="./Application/Home/View/Public/common/user_head.html" />
+
+	<body>
+		<div class="container header">
+			<div class="jumbotron">
+
+			</div>
+		</div>
+		<div class="container main ">
+			<form id="email_form" class="form-horizontal col-md-8 col-md-offset-2" action="get_new_pwd" method="post">
+				<div id="alert_dialog" style="display: none;" class="alert alert-danger" role="alert">
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					<span class="sr-only">Error:</span>
+					Your email does not exist!
+				</div>
+				<div id="success_dialog" style="display: none;" class="alert alert-success" role="alert">
+					<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+					<span class="sr-only">Success:</span>
+					The new password has been sent to your email please checkout.
+				</div>
+				<div id="warning_dialog" style="display: none;" class="alert alert-warning" role="alert">
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					<span class="sr-only">Fail:</span>
+					Operation failure！
+				</div>
+				<div class="form-group">
+					<label>Please submit your email address, then you will get an email with a new password.</label>
+				</div>
+				<div class="form-group">
+					<label for="email" class="col-sm-3 control-label">Email Address</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="email" name="email" placeholder="Email">
+					</div>
+
+				</div>
+				
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-8 text-center">
+						<button id="submitBtn" type="submit" class="btn btn-success">Submit</button>
+					</div>
+				</div>
+				
+			</form>
+		</div>
+		<include file="./Application/Home/View/Public/common/user_script.html" />
+		<script type="text/javascript">
+		
+		$("#submitBtn").on("click",function(){
+			$('#email_form').bootstrapValidator({
+		        message: 'This value is not valid',
+		        feedbackIcons: {
+		            valid: 'glyphicon glyphicon-ok',
+		            invalid: 'glyphicon glyphicon-remove',
+		            validating: 'glyphicon glyphicon-refresh'
+		        },
+		        fields: {
+		        	
+		            email: {
+		                validators: {
+		                	notEmpty: {
+		                        message: 'The email is required and cannot be empty'
+		                    },
+		                    emailAddress: {
+		                        message: 'The input is not a valid email address'
+		                    }
+		                }
+		            }
+		        }
+		    })
+			.on('status.field.bv', function(e, data) {
+				$("#alert_dialog").hide(200);
+				
+	        })
+			.on('success.form.bv', function(e) {
+	            // Prevent form submission
+	            e.preventDefault();
+				
+	            // Get the form instance
+	            var $form = $(e.target);
+	
+	            // Get the BootstrapValidator instance
+	            var bv = $form.data('bootstrapValidator');
+				
+	            // Use Ajax to submit form data
+	            $.post($form.attr('action'), $form.serialize(), function(result) {
+	                if (result.valid == 'success') {
+	                	//成功
+	                	$("#success_dialog").show(200);
+						$('#email_form').bootstrapValidator('disableSubmitButtons', true);
+	                    
+	                } else if(result.valid == 'error') {
+	                    // The account is not found
+	                    // Show the errors
+						$("#alert_dialog").show(200);
+	                    // Enable the submit buttons
+	                    $('#email_form').bootstrapValidator('disableSubmitButtons', false);
+	                }else{
+	                	// 更新失败
+						$("#warning_dialog").show(200);
+	                    // Enable the submit buttons
+	                    $('#email_form').bootstrapValidator('disableSubmitButtons', false);
+	                }
+	            }, 'json');
+       		});
+       		
+		});
+		
+		</script>
+	</body>
+
+</html>

@@ -43,8 +43,8 @@ class RegistrationController extends CommonController {
 		$data['address'] = $_POST['address'];
 		$data['zip'] = $_POST['zip'];
 		$data['email'] = $_POST['email'];
-		$password = $this->random_pwd(6);
-		$salt = $this->random_str(6);
+		$password = random_pwd(6);
+		$salt = random_str(6);
 		$data['password'] = md5(md5($password) . $salt);
 		$data['salt'] = $salt;
 		//默认值
@@ -108,7 +108,7 @@ class RegistrationController extends CommonController {
 		
 		$data['user_id'] =  $user['user_id'];
 		//会议编号
-		$data['refer_no'] = $this->gen_refer_no();
+		$data['refer_no'] = gen_refer_no();
 		//与会人员身份类型
 		$data['refer_type'] = $_POST['refer_types'];
 		
@@ -240,9 +240,6 @@ class RegistrationController extends CommonController {
 		
 	}
 	
-	
-	
-	
 	//打开注册完成后的感谢页面
 	public function thanks(){
 		
@@ -256,44 +253,7 @@ class RegistrationController extends CommonController {
 	}
 	
 	
-	//生成随机数,用于生成salt
-    public function random_str($length){
-        //生成一个包含 大写英文字母, 小写英文字母, 数字 的数组
-        $arr = array_merge(range(0, 9), range('a', 'z'), range('A', 'Z'));
-        $str = '';
-        $arr_len = count($arr);
-        for ($i = 0; $i < $length; $i++){
-            $rand = mt_rand(0, $arr_len-1);
-            $str.=$arr[$rand];
-        }
-        return $str;
-    }
-	//生成随机数,用于生成密码
-    public function random_pwd($length){
-        //生成一个包含数字的数组
-        $arr = array_merge(range(0, 9));
-        $str = '';
-        $arr_len = count($arr);
-        for ($i = 0; $i < $length; $i++){
-            $rand = mt_rand(0, $arr_len-1);
-            $str.=$arr[$rand];
-        }
-        return $str;
-    }
-	
-	//生成编号，格式：ICB201700001
-	public function gen_refer_no(){
-		$Reg = M('Reg');
-		$maxRegId = $Reg->max('reg_id');
-		if(!$maxRegId){
-			$maxRegId = 0;
-		}
-		$refer_no = "ICB2017".str_pad($maxRegId + 1,5,"0",STR_PAD_LEFT);
-		return $refer_no;
-		
-	}
-	
-	//发送电子邮件
+	//发送自动创建账户的电子邮件
 	public function account_mail($toAddress,$subject,$title,$last_name,$password){
 		
 		//邮件正文

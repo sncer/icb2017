@@ -49,7 +49,7 @@ class AbstractController extends CommonController {
 		$data['zip'] = $_POST['zip'];
 		$data['email'] = $_POST['email'];
 		$password = $_POST['password'];
-		$salt = $this->random_str(6);
+		$salt = random_str(6);
 		$data['password'] = md5(md5($password) . $salt);
 		$data['salt'] = $salt;
 		
@@ -293,18 +293,6 @@ class AbstractController extends CommonController {
     }
 	
 	
-	//生成随机数,用于生成salt
-    public function random_str($length){
-        //生成一个包含 大写英文字母, 小写英文字母, 数字 的数组
-        $arr = array_merge(range(0, 9), range('a', 'z'), range('A', 'Z'));
-        $str = '';
-        $arr_len = count($arr);
-        for ($i = 0; $i < $length; $i++){
-            $rand = mt_rand(0, $arr_len-1);
-            $str.=$arr[$rand];
-        }
-        return $str;
-    }
 	
 
 	

@@ -46,3 +46,39 @@
 		return str_replace(" ","_",$file_name);
     }         
         
+	//生成随机数,用于生成salt
+    function random_str($length){
+        //生成一个包含 大写英文字母, 小写英文字母, 数字 的数组
+        $arr = array_merge(range(0, 9), range('a', 'z'), range('A', 'Z'));
+        $str = '';
+        $arr_len = count($arr);
+        for ($i = 0; $i < $length; $i++){
+            $rand = mt_rand(0, $arr_len-1);
+            $str.=$arr[$rand];
+        }
+        return $str;
+    }
+	//生成随机数,用于生成密码
+    function random_pwd($length){
+        //生成一个包含数字的数组
+        $arr = array_merge(range(0, 9));
+        $str = '';
+        $arr_len = count($arr);
+        for ($i = 0; $i < $length; $i++){
+            $rand = mt_rand(0, $arr_len-1);
+            $str.=$arr[$rand];
+        }
+        return $str;
+    }
+	
+	//生成编号，格式：ICB201700001
+	function gen_refer_no(){
+		$Reg = M('Reg');
+		$maxRegId = $Reg->max('reg_id');
+		if(!$maxRegId){
+			$maxRegId = 0;
+		}
+		$refer_no = "ICB2017".str_pad($maxRegId + 1,5,"0",STR_PAD_LEFT);
+		return $refer_no;
+		
+	}
