@@ -11,7 +11,7 @@
 		</div>
 		<div class="container main ">
 			<form id="register_form" class="form-horizontal col-md-8 col-md-offset-2" action="attendee_register" method="post">
-				<p class="lead">Please provide the following information for the registration:</p>
+				<p class="lead">Please provide the following information about the attendee:</p>
 				<hr />
 				<div class="form-group">
 					<label for="title" class="col-sm-4 control-label">Title<span class="mark">*</span></label>
@@ -78,10 +78,11 @@
 						<input type="text" class="form-control" id="email" name="email" placeholder="Email Address">
 					</div>
 				</div>
-				
+				<br />
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-8 text-center">
-						<button type="submit" class="btn btn-primary">Continue</button>
+						<input type="hidden" name="action" id="action" value="reg_other" />
+						<button type="submit" class="btn btn-success">Continue</button>
 					</div>
 				</div>
 			</form>
@@ -126,10 +127,6 @@
 		                    },
 		                    emailAddress: {
 		                        message: 'The input is not a valid email address'
-		                    },
-		                    remote: {
-		                        message: 'The email is not available',
-		                        url: "{:U('User/verify_email')}"
 		                    }
 		                }
 		            },

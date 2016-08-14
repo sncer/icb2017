@@ -8,31 +8,35 @@ class RegistrationController extends CommonController {
 		parent::_initialize();
 		
 		switch ($this->getMethodName()){
-//			case 'attendee_reg':break;
-			case 'verify_email':break;
-//			case 'attendee_register':break;
-//			case 'start_registration':break;
-//			case 'thanks':break;
-//			case 'new_reg':break;
+//			case 'add_registration':break;
+
             default:parent::_checkLogin();
         }
         
     }
 	
-	//打开会议注册的注册页面，已经登录的用户可以跳过
+	//代别人注册页面，填写个人信息，写入reg表
 	public function attendee_reg(){
+		//获取操作流程，默认为reg_other
+//		$action = $_REQUEST['action'];
+//		$this->assign("action",$action);
 		
-			$this->assign("title_list",C('TITLE_LIST'));
-			$this->assign("country_list",C('COUNTRY_LIST'));
-			
-	    	$this->display('attendee_reg');
+		$this->assign("title_list",C('TITLE_LIST'));
+		$this->assign("country_list",C('COUNTRY_LIST'));
+		
+    	$this->display('attendee_reg');
 		
     }
-	
-	//与会人员注册，已注册可以跳过
+
+	//添加与会人员保存在session中
 	public function attendee_register(){
+		//获取操作流程，默认为reg_other
+		$action = $_REQUEST['action'];
+		$this->assign("action",$action);
+		
 		$title_list = C('TITLE_LIST');
 		$country_list = C('COUNTRY_LIST');
+		
 		// 获取表单的POST数据
 		$data['title'] = $title_list[$_POST['title']];
 		$data['first_name'] = trim($_POST['first_name']);
@@ -43,70 +47,60 @@ class RegistrationController extends CommonController {
 		$data['address'] = $_POST['address'];
 		$data['zip'] = $_POST['zip'];
 		$data['email'] = $_POST['email'];
-		$password = random_pwd(6);
-		$salt = random_str(6);
-		$data['password'] = md5(md5($password) . $salt);
-		$data['salt'] = $salt;
-		//默认值
-		//$data['updated_time'] = date("Y-m-d H:i:s");
-		$data['created_time'] = date("Y-m-d H:i:s");
-		$data['active'] = 1;
-		// 实例化User模型
-		$User = M('User');
-		$res_id = $User->add($data);
-		if($res_id > 0){
-			//根据id获取用户信息，并存入session，跳转到dashboard
-			$result = $User->where("user_id = $res_id")->find();
-			session('user',$result);
-			//储存下随机密码
-			//session('pwd',$password);
-//			$this->assign('user',$result);
-			//发送地址
-			$toAddress = $data['email'];  
-			//邮件主题
-			$subject = "ICB2017 Account Created Automatically";
-			$title = $data['title'];
-			$last_name = $data['last_name'];
-			$this->account_mail($toAddress,$subject,$title,$last_name,$password);
-			//设置成功后跳转后台主页面的地址 
-			$this->assign("country_list",C('COUNTRY_LIST'));
-			$this->assign("user",session('user'));
-			$this->display('start_registration');
-		}else{
-			$this->display('Public:500');
-		}
+		
+		//将个人信息保存在session中
+		session("attendee",$data);
+		
+		//打开注册缴费页面
+		$this->assign("country_list",C('COUNTRY_LIST'));
+		$this->display('start_registration');
 	}
 
 	//打开会议注册页面
 	public function start_registration(){
+		//如果没有登录则报错
+		if(!session('?user')){
+			$this->display('Public:500');
+			exit;
+		}
 		//获取操作流程
 		$action = $_REQUEST['action'];
 		$this->assign("action",$action);
-		
 		$this->assign("country_list",C('COUNTRY_LIST'));
-		$this->assign("user",session('user'));
 		$this->display('start_registration');
 		
     }
 	
 	//添加会议注册纪录
 	public function add_registration(){
-		
+		//如果没有登录则报错
+		if(!session('?user')){
+			$this->display('Public:500');
+			exit;
+		}
 		//获取操作流程
 		$action = $_REQUEST['action'];
 		$this->assign("action",$action);
 		
-		//如果没有登录则报错
-		if(!session('?user')){
+		if(empty($action)){
 			$this->display('Public:500');
-			
+			exit;
 		}
+		//如果是为自己注册
+		if($action == "reg"){
+			$user = session("user");
+		}else{
+			//如果是为其他人注册
+			$user = session("attendee");
+		}
+		
 		//获取国家列表
 		$country_list = C('COUNTRY_LIST');
 		//从session中获取当前操作者的user信息
-		$user = session("user");
+		$user_id = session("user")['user_id'];
 		
-		$data['user_id'] =  $user['user_id'];
+		
+		$data['user_id'] =  $user_id;
 		//会议编号
 		$data['refer_no'] = gen_refer_no();
 		//与会人员身份类型
@@ -140,7 +134,7 @@ class RegistrationController extends CommonController {
 			//如果需要邀请函
 			if($data['is_visa'] == 1){
 				$visa['reg_id'] =  $reg_id;
-				$visa['user_id'] =  $user['user_id'];
+				$visa['user_id'] =  $user_id;
 				$visa['full_name'] = trim($_POST['full_name']);
 				$visa['address'] = $_POST['address'];
 				$visa['zip'] = $_POST['zip'];
@@ -159,6 +153,7 @@ class RegistrationController extends CommonController {
 				if(!$visa_id){
 					$Reg->rollback();
 					$this->display('Public:500');
+					exit;
 				}
 				
 			}
@@ -216,29 +211,11 @@ class RegistrationController extends CommonController {
 		}else{
 			$Reg->rollback();
 			$this->display('Public:500');
+			exit;
 		}
 
 	}
 	
-	//验证邮箱是否已经存在
-	public function verify_email(){
-		$email = $_POST['email'];
-		// 实例化User模型
-		$User = M('User');
-		// Check email existence
-		$res = $User->where("email = '".$email."'")->find();
-		
-		if($res){
-			$isAvailable = false;
-		}else{
-			$isAvailable = true;
-		}
-		// Finally, return a JSON
-		echo json_encode(array(
-		    'valid' => $isAvailable,
-		));
-		
-	}
 	
 	//打开注册完成后的感谢页面
 	public function thanks(){
@@ -246,11 +223,6 @@ class RegistrationController extends CommonController {
 		$this->display();
 	}
 	
-	public function new_reg(){
-		//清除session
-		session('user',null);
-		$this->success('Please Wait a Moment...', U('Registration/attendee_reg'),0);
-	}
 	
 	
 	//发送自动创建账户的电子邮件

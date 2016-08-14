@@ -110,6 +110,7 @@ class UserController extends CommonController {
 
 		}else{
 			$this->display('Public:500');
+			exit;
 		}
 	}
 	//验证邮箱是否已经存在
@@ -154,6 +155,7 @@ class UserController extends CommonController {
 		
 		if(empty($email) || empty($password)){
 			$this->display('Public:500');
+			exit;
 		}
 		
 		$User = M('User');

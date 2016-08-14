@@ -70,6 +70,7 @@ class AbstractController extends CommonController {
 		}else{
 			$User->rollback();
 			$this->display('Public:500');
+			exit;
 		}
 		unset($data);
 		$data['full_title'] = trim($_POST['full_title']);
@@ -123,6 +124,7 @@ class AbstractController extends CommonController {
 			}
 
 			$this->display('Public:500');
+			exit;
 		}else{
 			//提交事务
 			$User->commit(); 
@@ -196,6 +198,7 @@ class AbstractController extends CommonController {
 				unlink($file);
 			}
 			$this->display('Public:500');
+			exit;
 		}else{
 			//提交事务
 			$Abstract->commit();
@@ -235,6 +238,7 @@ class AbstractController extends CommonController {
 		$abstract_id = $_POST['abstract_id'];
 		if(!isset($abstract_id)){
 			$this->display('Public:500');
+			exit;
 		}
 		$user = session('user');
 		$user_id = $user['user_id'];
