@@ -282,3 +282,22 @@ img{
 	font-size: 14px;
 	background-color: #f8f8f8;
 }
+
+.thumbnail{
+	width: 50%;
+	border: none;
+	float: left;
+}
+.thumbnail img{
+	height: 250px;
+}
+.thumbnail h3{
+	text-align: center;
+}
+.thumbnail h3 a{
+	color: black;
+}
+.thumbnail p{
+	font-size: 14px;
+	padding-left: 20px;
+}
