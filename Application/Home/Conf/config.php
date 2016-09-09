@@ -41,6 +41,28 @@ return array(
 		"4"	=> "Accompanying person"
 	),
 	
+	//价格
+	'TOTAL_COST_LIST' => array(
+		"1"	=> 580,
+		"2"	=> 720,
+		"3"	=> 720,
+		"4"	=> 860,
+		"5"	=> 290,
+		"6"	=> 430,
+		"7"	=> 220,
+		"8" => 290
+	),
+	
+	//银行账户信息
+	'BANK_ACCOUNT_DETAILS' => array(
+		"bank_name" => "ANZ Bank",
+		"branch_name" => "Auckland (Q&V)",
+		"account_name" => "University of Canterbury",
+		"account_number" => "01 1839 0036732 00",
+		"swift_number" => "ANZBNZ22",
+		"bank_address" => "Corner Queen and Victoria Street, Auckland"
+	),
+		
 	//付费链接
 	'PAYMENT_URL_LIST' => array(
 		"1"	=> "https://uccheckout.canterbury.ac.nz/Checkout/Checkout.aspx?Reference=ICB2017p1",

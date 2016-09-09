@@ -42,11 +42,27 @@
 				</div>
 				<hr />
 				<div class="form-group">
+					<label>Please select your method of payment:</label>
+				</div>
+				<div class="radio">
+					<label>
+					    <input type="radio" name="pay_types" id="pay_type1" value="1" checked="checked">
+					    Credit Card
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+					    <input type="radio" name="pay_types" id="pay_type2" value="2">
+					    Wire Transfer
+					</label>
+				</div>
+				<hr />
+				<div class="form-group">
 					<label>Do you want to receive an invitation letter for Visa application?</label>
 				</div>
 				<div class="radio">
 					<label>
-					    <input type="radio" name="is_visa" id="is_visa1" value="1" checked>
+					    <input type="radio" name="is_visa" id="is_visa1" value="1" checked="checked">
 					    Yes
 					</label>
 				</div>
@@ -172,6 +188,13 @@
 	            },
 	            fields: {
 	                refer_types: {
+		                validators: {
+		                    notEmpty: {
+		                        message: 'This One is required'
+		                    }
+		                }
+		            },
+		            pay_types: {
 		                validators: {
 		                    notEmpty: {
 		                        message: 'This One is required'
