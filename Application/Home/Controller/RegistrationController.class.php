@@ -148,13 +148,7 @@ class RegistrationController extends CommonController {
 				$visa['zip'] = $_POST['zip'];
 				$visa['city'] = $_POST['city'];
 				$visa['country'] = $country_list[$_POST['country']];
-				$visa['pass_no'] = $_POST['pass_no'];
-				$visa['pass_place'] = $_POST['pass_place'];
-				$visa['pass_date'] = $_POST['pass_date'];
-				$visa['expiry_date'] = $_POST['expiry_date'];
 				$visa['birth_date'] = $_POST['birth_date'];
-				$visa['birth_place'] = $_POST['birth_place'];
-				$visa['birth_country'] = $country_list[$_POST['birth_country']];
 				$visa['created_time'] = date("Y-m-d H:i:s");
 				$Visa = M('Visa');
 				$visa_id = $Visa->add($visa);
