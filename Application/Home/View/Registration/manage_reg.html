@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<include file="./Application/Home/View/Public/common/user_head.html" />
+
+<body>
+
+    <div id="wrapper">
+
+        <include file="./Application/Home/View/Public/common/user_nav.html" />
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Your Registration(s)</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                    	<empty name="regs">
+                        	<p>You do not have any registration yet, click <a href="__MODULE__/Registration/start_registration?action=reg">here</a> to register now!</p>
+                        <else />
+	                    	<div class="table-responsive" id="reg_table">
+	                            <table class="table table-striped table-bordered table-hover">
+	                               <thead>
+	                                    <tr>
+	                                        <th>#</th>
+	                                        <th>Reference Number</th>
+	                                        <th>Attendee Category</th>
+	                                        <th>First Name</th>
+	                                        <th>Last Name</th>
+	                                        <th>Email Address</th>
+	                                        <th>Invitation Letter</th>
+	                                        <th>Payment Type</th>
+	                                        <th>&nbsp;</th>
+	                                    </tr>
+	                                </thead>
+	                                <tbody>
+	                                    <volist name="regs" id="reg">
+	                                    	<tr id="reg_{$reg.reg_id}" class="reg_tr">
+	                                            <td>{$i}</td>
+	                                            <td>{$reg.refer_no}</td>
+	                                            <td><php>echo $refer_type_list[$reg['refer_type']]</php></td>
+	                                            <td>{$reg.first_name}</td>
+	                                            <td>{$reg.last_name}</td>
+	                                            <td>{$reg.email}</td>
+	                                            
+	                                            <if condition="$reg.is_visa eq 1">
+	                                            	<td>Need</td>
+	                                            	<else />
+	                                            	<td>No Need</td>
+	                                            </if>
+	                                            <if condition="$reg.pay_type eq 1">
+	                                            	<td>Credit Card</td>
+	                                            	<else />
+	                                            	<td>Wire Transfer</td>
+	                                            </if>
+	                                            <td>
+	                                            	<a target="_blank" href="__MODULE__/Registration/details_reg?reg_id={$reg.reg_id}" data-toggle="tooltip" data-placement="bottom" title="Details" class="btn btn-default btn-circle"><i class="fa fa-ellipsis-h"></i></a>
+		                                        	<button data-id="{$reg.reg_id}" data-toggle="tooltip" data-placement="bottom" title="Delete" type="button" class="btn btn-danger btn-circle btn_delete"><i class="fa fa-trash-o"></i></button>
+		                                        </td>
+	                                        </tr>
+	                                    </volist>
+	                                </tbody>
+	                            </table>
+	                        </div>
+	                    </empty>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+	<div id="loading"><img src="__STATIC__/img/loading.gif" alt="loading" />&nbsp;Loading...</div>
+   	<include file="./Application/Home/View/Public/common/user_script.html" />
+	<script type="text/javascript">
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip();
+		$(".btn_delete").click(function(){
+			var r=confirm("Are you sure to delete this registration?")
+			if(r==true){
+				//确认删除
+				//获取reg_id
+				var reg_id = $(this).attr("data-id");
+				if(reg_id > 0){
+					delete_reg(reg_id);
+				}
+
+			}
+		});
+
+		
+	})
+	//ajax删除摘要
+	function delete_reg(reg_id){
+		$.ajax({ 
+            type: "post", 
+            url: "{:U('Registration/delete_reg')}", 
+            dataType: "json", 
+            data: {
+            	reg_id : reg_id
+            },
+            beforeSend: function () {
+		        $("#loading").show();
+		    },
+            success: function (res) {
+            	if(res['result'] == "success"){
+            		//删除成功
+            		alert("Delete Successfully!");
+            		$("#reg_"+reg_id).remove();
+            		if($(".reg_tr").size() == 0){
+            			$("#reg_table").html("<p>You do not have any registration yet, click <a href="+"__MODULE__/Registration/start_registration?action=reg"+">here</a> to register now!</p>");
+            		}
+            	}else{
+            		alert(res['result']);
+            	}
+            }, 
+            error: function () { 
+                alert("error！"); 
+            },
+            complete: function () {
+		        $("#loading").hide();
+		    }
+        });
+	}
+ 
+	</script>
+</body>
+
+</html>

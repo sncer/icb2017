@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<include file="./Application/Home/View/Public/common/user_head.html" />
+
+	<body>
+		<div class="container header">
+			<div class="jumbotron">
+
+			</div>
+		</div>
+		<div class="container main ">
+			<form id="select_form" class="form-horizontal col-md-8 col-md-offset-2">
+				<div class="form-group">
+					<label>Who do you want to register for?</label>
+				</div>
+				<div class="radio">
+					<label>
+					    <input type="radio" name="identity" id="identity1" value="1" checked>
+					    I want to register for myself.
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+					    <input type="radio" name="identity" id="identity2" value="2">
+					    I want to register for others.
+					</label>
+				</div>
+				<br />
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-8 text-center">
+						<input type="hidden" name="action" id="action" value="{$action}" />
+						<button id="submitBtn" type="button" class="btn btn-success">Continue</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<include file="./Application/Home/View/Public/common/user_script.html" />
+		<script type="text/javascript">
+		$(document).ready(function() {
+			$("#submitBtn").click(function(){
+				
+				var value = $('input:radio[name=identity]:checked').val();
+				if(value == 1){
+					//为自己注册
+					window.location.href = "__MODULE__/Registration/start_registration?action=reg";
+				}else{
+					window.location.href = "__MODULE__/Registration/attendee_reg?action=reg_other";
+				}
+			})
+		});
+			
+
+		</script>
+	</body>
+
+</html>
