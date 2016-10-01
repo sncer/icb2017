@@ -80,4 +80,9 @@ class IndexController extends CommonController {
     	$this->assign('href',$href);
     	$this->display();
 	}
+	public function hotel(){
+		$href = "hotel";
+    	$this->assign('href',$href);
+    	$this->display();
+	}
 }
