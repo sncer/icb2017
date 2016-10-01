@@ -229,6 +229,17 @@ class UserController extends CommonController {
 		
 		$abstracts = $Abstract->order("created_time")->where("user_id = $user_id")->select();
 		
+		//查询该用户提交的摘要
+		$Reg = M('Reg');
+		
+		$regs = $Reg->order("created_time")->where("user_id = $user_id and status = 1")->select();
+		
+		$refer_type_list = C('REFER_TYPE_LIST');
+		
+		$this->assign('regs',$regs);
+		$this->assign('user',$user);
+		$this->assign('refer_type_list',$refer_type_list);
+		
 		$this->assign('abstracts',$abstracts);
 		$this->assign('user',$user);
 		$this->assign('topic_list',C('TOPIC_LIST'));

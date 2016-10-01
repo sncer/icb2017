@@ -64,6 +64,62 @@
                         <!-- /.panel-body -->
                     </div>
                 </div>
+                <!-- /.row -->
+                <div class="row">
+                	<div class="panel panel-default">
+                        <div class="panel-heading">
+                            Your Registration(s)
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <empty name="abstracts">
+                            	<p>You do not have any registration yet, click <a href="{:U('Registration/new_reg')}">here</a> to register now!</p>
+                            <else />
+                            	<div class="table-responsive">
+	                                <table class="table table-striped table-bordered table-hover">
+	                                    <thead>
+	                                        <tr>
+		                                        <th>#</th>
+		                                        <th>Reference Number</th>
+		                                        <th>Attendee Category</th>
+		                                        <th>First Name</th>
+		                                        <th>Last Name</th>
+		                                        <th>Email Address</th>
+		                                        <th>Invitation Letter</th>
+		                                        <th>Payment Type</th>
+		                                    </tr>
+	                                    </thead>
+	                                    <tbody>
+	                                    <volist name="regs" id="reg">
+	                                    	<tr id="reg_{$reg.reg_id}" class="reg_tr">
+	                                            <td>{$i}</td>
+	                                            <td>{$reg.refer_no}</td>
+	                                            <td><php>echo $refer_type_list[$reg['refer_type']]</php></td>
+	                                            <td>{$reg.first_name}</td>
+	                                            <td>{$reg.last_name}</td>
+	                                            <td>{$reg.email}</td>
+	                                            
+	                                            <if condition="$reg.is_visa eq 1">
+	                                            	<td>Need</td>
+	                                            	<else />
+	                                            	<td>No Need</td>
+	                                            </if>
+	                                            <if condition="$reg.pay_type eq 1">
+	                                            	<td>Credit Card</td>
+	                                            	<else />
+	                                            	<td>Wire Transfer</td>
+	                                            </if>
+	                                        </tr>
+	                                    </volist>
+	                                </tbody>
+	                                </table>
+	                            </div>
+	                            <!-- /.table-responsive -->
+                            </empty>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                </div>
             </div>
             <!-- /.container-fluid -->
         </div>
