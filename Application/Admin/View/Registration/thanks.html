@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<include file="./Application/Home/View/Public/common/user_head.html" />
+
+	<body>
+		<div class="container header">
+			<div class="jumbotron">
+
+			</div>
+		</div>
+		<div class="container main">
+			<div class="col-md-8 col-md-offset-2">
+				<h1 class="page-header" style="margin-top: 0;">Thank you for the registration！</h1>
+				<if condition="$token eq 'false'">
+					<p class="lead">You have already registered, and don't need to register again.</p>
+				<else />
+				<h2 class="text-center">Attendee Information</h2>
+				<table class="table table-condensed">
+					<tbody>
+						<tr>
+							<th scope="row">Reference Number</th>
+							<td><strong>{$reg['refer_no']}</strong></td>
+						</tr>
+						<tr>
+							<th scope="row">Attendee Category</th>
+							<td>{$refer_type_list[$reg['refer_type']]}</td>
+						</tr>
+						<tr>
+							<th scope="row">First Name</th>
+							<td>{$reg["first_name"]}</td>
+						</tr>
+						<tr>
+							<th scope="row">Last Name</th>
+							<td>{$reg["last_name"]}</td>
+						</tr>
+						<tr>
+							<th scope="row">Email Address</th>
+							<td>{$reg["email"]}</td>
+						</tr>
+						<tr>
+							<th scope="row">Affiliation</th>
+							<td>{$reg["affiliation"]}</td>
+						</tr>
+						<tr>
+							<th scope="row">Address</th>
+							<td>{$reg["address"]}</td>
+						</tr>
+						<tr>
+							<th scope="row">Zip (Postal Code)</th>
+							<td>{$reg["zip"]}</td>
+						</tr>
+						<tr>
+							<th scope="row">City</th>
+							<td>{$reg["city"]}</td>
+						</tr>
+						<tr>
+							<th scope="row">Country</th>
+							<td>{$reg["country"]}</td>
+						</tr>
+					</tbody>
+				</table>
+				<hr />
+				
+				<h2 class="text-center">Payment</h2>
+				<p class="lead">The Total Cost is <strong>NZD {$total_cost}</strong>.</p>
+				<if condition="$pay_type eq 1 ">
+					<p class="lead">Your Payment Type is <strong>Credit Card</strong>.</p>
+					<p class="lead">Please click <a class="btn btn-success" target="_blank" href="{$payment_url}">HRER</a> to pay for the money by credit card.</p>
+					<else /> 
+					<p class="lead">Your Payment Type is <strong>Wire Transfer</strong>.</p>
+					<p class="lead">The Bank Account Details are as follows:</p>
+					<table class="table table-condensed">
+						<tbody>
+							<tr>
+								<th scope="row">Bank Name</th>
+								<td>{$bank_account_details['bank_name']}</td>
+							</tr>
+							<tr>
+								<th scope="row">Branch Name</th>
+								<td>{$bank_account_details['branch_name']}</td>
+							</tr>
+							<tr>
+								<th scope="row">Account Name</th>
+								<td>{$bank_account_details['account_name']}</td>
+							</tr>
+							<tr>
+								<th scope="row">Account Number</th>
+								<td>{$bank_account_details['account_number']}</td>
+							</tr>
+							<tr>
+								<th scope="row">Swift (Routing) Number</th>
+								<td>{$bank_account_details['swift_number']}</td>
+							</tr>
+							<tr>
+								<th scope="row">Bank Address</th>
+								<td>{$bank_account_details['bank_address']}</td>
+							</tr>
+						</tbody>
+					</table>
+					
+				</if>
+				<p><span class="mark">*</span>Please quote your <strong>Reference Number</strong> when making payment.</p>
+				<br />
+				
+				<hr />
+				<notempty name="visa">
+					<h2 class="text-center">Invitation Letter Information</h2>
+					<table class="table table-condensed">
+						<tbody>
+							<tr>
+								<th scope="row">Full Name (like on passport)</th>
+								<td>{$visa["full_name"]}</td>
+							</tr>
+							<tr>
+								<th scope="row">Street and Number (personal address)</th>
+								<td>{$visa["address"]}</td>
+							</tr>
+							<tr>
+								<th scope="row">Zip Code (personal address)</th>
+								<td>{$visa["zip"]}</td>
+							</tr>
+							<tr>
+								<th scope="row">City (personal address)</th>
+								<td>{$visa["city"]}</td>
+							</tr>
+							<tr>
+								<th scope="row">Country (personal address)</th>
+								<td>{$visa["country"]}</td>
+							</tr>
+							<tr>
+								<th scope="row">Date of Birth</th>
+								<td>{$visa["birth_date"]}</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr />
+				</notempty>
+					
+				</if>
+				<p class="text-center">
+					<a class="btn btn-success" href="{:U('Registration/manage_reg')}">Return</a>
+					
+				</p>
+			</div>
+			
+
+		</div>
+		<include file="./Application/Home/View/Public/common/user_script.html" />
+		<script type="text/javascript">
+		$(document).ready(function() {
+			
+		});
+			
+
+		</script>
+	</body>
+
+</html>

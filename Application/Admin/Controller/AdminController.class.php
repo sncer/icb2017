@@ -1,7 +1,20 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class AdminController extends Controller {
+class AdminController extends CommonController {
+	
+	public function _initialize() {
+		
+		parent::_initialize();
+		
+		switch ($this->getMethodName()){
+			case 'admin_login':break;
+			case 'login':break;
+            default:parent::_checkLogin();
+        }
+        
+    }
+	
 	public function admin_login(){
     	$this->display();
     }
@@ -18,11 +31,16 @@ class AdminController extends Controller {
 			$data = "Fail";
 			$this->ajaxReturn($data,'json');
 		}else{
-			session('admin_id',$data["admin_id"]);
-			session('admin_name',$data["admin_name"]);
+			session('admin',$data);
 			$data = "Success";
 			$this->ajaxReturn($data,'json');
 		}
 		
+	}
+	//用户注销
+	public function logout(){
+		//清除session
+		session('admin',null);
+		$this->success('Logout successfully！', U('Admin/admin_login'),1);
 	}
 }

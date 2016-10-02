@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<include file="./Application/Admin/View/Public/common/user_head.html" />
+
+<body>
+
+    <div id="wrapper">
+
+        <include file="./Application/Admin/View/Public/common/user_nav.html" />
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Abstracts</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <!-- /.row -->
+	            <div class="row">
+	                <div class="col-lg-12">
+	                    <div class="panel panel-default">
+	                        <div class="panel-heading">
+	                            All Submitted Abstracts
+	                        </div>
+	                        <!-- /.panel-heading -->
+	                        <div class="panel-body">
+	                            <div class="dataTable_wrapper">
+	                                <table class="table table-striped table-bordered table-hover" id="dataTables">
+	                                    <thead>
+	                                        <tr>
+		                                        <th>#</th>
+		                                        <th>Title</th>
+		                                        <th>Topic</th>
+		                                        <th>Type</th>
+		                                        <th>Submission Time</th>
+		                                        <th>Name</th>
+		                                        <th>Email</th>
+		                                        <th>Affiliation</th>
+		                                        <th>Address</th>
+		                                        <th>Zip</th>
+		                                        <th>City</th>
+		                                        <th>Country</th>
+		                                        <th>&nbsp;</th>
+		                                    </tr>
+	                                    </thead>
+	                                    <tbody>
+	                                        <volist name="abstracts" id="abstract">
+		                                    	<tr id="abstract_{$abstract.abstract_id}" class="abstract_tr">
+		                                            <td>{$i}</td>
+		                                            <td>{$abstract.full_title}</td>
+		                                            <td><php>echo $topic_list[$abstract['topic']]</php></td>
+		                                            <td><php>echo $type_list[$abstract['type']]</php></td>
+		                                            <td>{$abstract.created_time}</td>
+		                                            <td>{$abstract.first_name}&nbsp;{$abstract.last_name}</td>
+		                                            <td>{$abstract.email}</td>
+		                                            <td>{$abstract.affiliation}</td>
+		                                            <td>{$abstract.address}</td>
+		                                            <td>{$abstract.zip}</td>
+		                                            <td>{$abstract.city}</td>
+		                                            <td>{$abstract.country}</td>
+		                                            <td>
+			                                        	<a href="__UPLOADS__{$abstract.filepath}" data-toggle="tooltip" data-placement="bottom" title="Download" class="btn btn-default btn-circle"><i class="fa fa-download"></i></a>
+			                                        </td>
+		                                        </tr>
+		                                    </volist>
+	                                        
+	                                    </tbody>
+	                                </table>
+	                            </div>
+	                            <!-- /.table-responsive -->
+	                            
+	                        </div>
+	                        <!-- /.panel-body -->
+	                    </div>
+	                    <!-- /.panel -->
+	                </div>
+	                <!-- /.col-lg-12 -->
+	            </div>
+	            <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+   	<include file="./Application/Admin/View/Public/common/user_script.html" />
+   	<script>
+	    $(document).ready(function() {
+	        $('#dataTables').DataTable({
+	                
+	        });
+	    });
+	</script>
+
+</body>
+
+</html>
