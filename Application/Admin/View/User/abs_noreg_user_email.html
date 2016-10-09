@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<include file="./Application/Admin/View/Public/common/user_head.html" />
+
+<body>
+
+    <div id="wrapper">
+
+        <include file="./Application/Admin/View/Public/common/user_nav.html" />
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Users who have submit abstracts and not do registration</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <!-- /.row -->
+	            <div class="row">
+	                <div class="col-lg-12">
+	                	<volist name="users" id="user">
+                        	<div class="panel panel-default">
+		                        <div class="panel-heading">
+		                            <strong>{$user.email}</strong><strong class="pull-right">#{$i}</strong>
+		                        </div>
+		                        <!-- /.panel-heading -->
+		                        <div class="panel-body">
+		                            <p>Dear {$user.title}{$user.last_name}</p><br>
+		                            <p>Your abstract submitted to the 6th International Conference on Biorefinery (ICB2017) has been received and assessed by the conference Scientific Committee. I am pleased to let you know that your paper has been accepted as <php>echo $type_list[$user['type']]</php> presentation and the abstract will be included in hard copy of conference proceedings.</p>
+		                            <p>You are now invited to take the benefits of early bird registration through the conference website (http://www.icb2017.org/home/index/registration.html). Please note that there is a luxury hotel and an economic motel you can choose for accommodation. Early registration will allow you to choose the preferred one. </p>
+		                            <p>Kind regards and look forward to welcoming you to ICB2017 in Christchurch, New Zealand.</p>
+		                            <br /><br />
+		                            <p>ICB2017 Organizing Committee</p>
+									<p>The University of Canterbury</p>
+									<p>Christchurch 8140, New Zealand</p>
+									<p>Email: <a href="mailto:ICB2017@canterbury.ac.nz">ICB2017@canterbury.ac.nz</a></p>
+		                            
+		                        </div>
+		                        <!-- /.panel-body -->
+		                    </div>
+		                    <!-- /.panel -->
+                        </volist>
+	                    
+	                    
+	                </div>
+	                <!-- /.col-lg-12 -->
+	            </div>
+	            <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+   	<include file="./Application/Admin/View/Public/common/user_script.html" />
+   	<script>
+	    $(document).ready(function() {
+	        $('#dataTables').DataTable({
+	                
+	        });
+	    });
+	</script>
+
+</body>
+
+</html>
