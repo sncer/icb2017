@@ -16,7 +16,12 @@ class AdminController extends CommonController {
     }
 	
 	public function admin_login(){
-    	$this->display();
+    	//如果已登录，则直接跳转到管理系统内的dashboard页面
+		if(session('?admin')){
+			$this->success('You have already logined!', U('Admin/dashboard'),1);
+		}else{
+			$this->display();
+		}
     }
 	public function login(){
 		$admin_name = $_POST["admin_name"];
