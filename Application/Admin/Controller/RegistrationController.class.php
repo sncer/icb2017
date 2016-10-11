@@ -14,7 +14,7 @@ class RegistrationController extends CommonController {
         
     }
 	
-	
+	//管理注册
 	public function manage_reg(){
 		
 		//查询该用户提交的摘要
@@ -31,6 +31,7 @@ class RegistrationController extends CommonController {
 
 	}
 	
+	//注册详情
 	public function details_reg(){
 		$reg_id = $_REQUEST['reg_id'];
 		if(!isset($reg_id)){
@@ -171,6 +172,24 @@ class RegistrationController extends CommonController {
 		
 	}
 	
+	
+	//查看需要邀请函的注册人员
+	public function letter_reg(){
+		//查询该用户提交的摘要
+		$Reg = M('Reg');
+		
+		$regs = $Reg->table('icb_reg reg')->order("reg.created_time")->where("reg.status = 1 and reg.is_visa = 1")
+		->field('reg.*,visa.full_name,visa.address,visa.zip,visa.city,visa.country,visa.birth_date')
+		->join('left join icb_visa visa on reg.reg_id = visa.reg_id')
+		->select();
+		
+		$refer_type_list = C('REFER_TYPE_LIST');
+		
+		$this->assign('regs',$regs);
+		$this->assign('user',$user);
+		$this->assign('refer_type_list',$refer_type_list);
+		$this->display();
+	}
 
 
 }

@@ -34,6 +34,7 @@
 	                                        <th>Topic</th>
 	                                        <th>Type</th>
 	                                        <th>Status</th>
+	                                        <th>Submission Time</th>
 	                                        <th>&nbsp;</th>
 	                                    </tr>
 	                                </thead>
@@ -44,10 +45,19 @@
 	                                            <td>{$abstract.full_title}</td>
 	                                            <td><php>echo $topic_list[$abstract['topic']]</php></td>
 	                                            <td><php>echo $type_list[$abstract['type']]</php></td>
-	                                            <td>Initiated</td>
+	                                            <td>
+	                                            	<if condition="$abstract.status eq 2"> Accepted
+	                                            		<elseif condition="$abstract.status eq 1"/>Initiated
+		                                            	<else /> Unkown
+		                                            </if>
+	                                            </td>
+	                                            <td>{$abstract.created_time}</td>
 	                                            <td>
 		                                        	<a href="__UPLOADS__{$abstract.filepath}" data-toggle="tooltip" data-placement="bottom" title="Download" class="btn btn-default btn-circle"><i class="fa fa-download"></i></a>
-		                                        	<button data-id="{$abstract.abstract_id}" data-toggle="tooltip" data-placement="bottom" title="Delete" type="button" class="btn btn-danger btn-circle btn_delete"><i class="fa fa-trash-o"></i></button>
+		                                        	<if condition="$abstract.status eq 1">
+		                                        		<button data-id="{$abstract.abstract_id}" data-toggle="tooltip" data-placement="bottom" title="Delete" type="button" class="btn btn-danger btn-circle btn_delete"><i class="fa fa-trash-o"></i></button>
+		                                            </if>
+
 		                                        </td>
 	                                        </tr>
 	                                    </volist>

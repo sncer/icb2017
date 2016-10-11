@@ -44,6 +44,7 @@
 		                                        <th>Zip</th>
 		                                        <th>City</th>
 		                                        <th>Country</th>
+		                                        <th>Status</th>
 		                                        <th>&nbsp;</th>
 		                                    </tr>
 	                                    </thead>
@@ -62,6 +63,12 @@
 		                                            <td>{$abstract.zip}</td>
 		                                            <td>{$abstract.city}</td>
 		                                            <td>{$abstract.country}</td>
+		                                            <td>
+		                                            	<if condition="$abstract.status eq 2"> Accepted
+		                                            		<elseif condition="$abstract.status eq 1"/>Initiated
+			                                            	<else /> Unkown
+			                                            </if>
+		                                            </td>
 		                                            <td>
 			                                        	<a href="__UPLOADS__{$abstract.filepath}" data-toggle="tooltip" data-placement="bottom" title="Download" class="btn btn-default btn-circle"><i class="fa fa-download"></i></a>
 			                                        </td>

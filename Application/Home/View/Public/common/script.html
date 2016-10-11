@@ -20,5 +20,11 @@
 				$("#demo-list [href='{:U("Index/$href")}']").parent("li").addClass("active");
 				$("#demo-list [href='{:U("Index/$href")}']").parent().parent("ul").css("display","block");
 			}
+			
+			//点击酒店预定
+			$("#room_booking").click(function(){
+				$("#hotels").click();
+			})
+			
 		})	
 	</script>

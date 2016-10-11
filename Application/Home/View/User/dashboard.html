@@ -51,7 +51,12 @@
 		                                            <td>{$abstract.full_title}</td>
 		                                            <td><php>echo $topic_list[$abstract['topic']]</php></td>
 		                                            <td><php>echo $type_list[$abstract['type']]</php></td>
-		                                            <td>Initiated</td>
+		                                            <td>
+		                                            	<if condition="$abstract.status eq 2"> Accepted
+		                                            		<elseif condition="$abstract.status eq 1"/>Initiated
+			                                            	<else /> Unkown
+			                                            </if>
+		                                            </td>
 		                                            <td>{$abstract.created_time}</td>
 		                                        </tr>
 	                                        </volist>
