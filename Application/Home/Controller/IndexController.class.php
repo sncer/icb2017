@@ -90,4 +90,9 @@ class IndexController extends CommonController {
     	$this->assign('href',$href);
     	$this->display();
 	}
+	public function agenda(){
+		$href = "agenda";
+    	$this->assign('href',$href);
+    	$this->display();
+	}
 }
