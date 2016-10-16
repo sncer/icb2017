@@ -40,6 +40,7 @@
 		                                        <th>Topic</th>
 		                                        <th>Type</th>
 		                                        <th>Submitted Time</th>
+		                                        <th>Status</th>
 		                                    </tr>
 	                                    </thead>
 	                                    <tbody>
@@ -53,6 +54,12 @@
 		                                            <td><php>echo $topic_list[$user['topic']]</php></td>
 		                                            <td><php>echo $type_list[$user['type']]</php></td>
 		                                            <td>{$user.created_time}</td>
+		                                            <td>
+		                                            	<if condition="$user.status eq 2"> Accepted
+		                                            		<elseif condition="$user.status eq 1"/>Initiated
+			                                            	<else /> Unkown
+			                                            </if>
+		                                            </td>
 		                                        </tr>
 		                                    </volist>
 	                                        

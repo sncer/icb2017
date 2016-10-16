@@ -36,7 +36,7 @@ class UserController extends CommonController {
 		$User = M('User');
 		
 		$users = $User->table('icb_abstract abs')->where('abs.status > 0 and abs.user_id not in (select user_id from icb_reg)')->order('abs.created_time')
-		->field('user.user_id,user.title,user.first_name,user.last_name,user.email,abs.full_title,abs.topic,abs.type,abs.created_time')
+		->field('user.user_id,user.title,user.first_name,user.last_name,user.email,abs.full_title,abs.topic,abs.type,abs.created_time,abs.status')
 		->join('left join icb_user user on abs.user_id = user.user_id and abs.status > 0')
 		->select();
 		
