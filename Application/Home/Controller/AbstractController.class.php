@@ -224,7 +224,7 @@ class AbstractController extends CommonController {
 		//查询该用户提交的摘要
 		$Abstract = M('Abstract');
 		
-		$abstracts = $Abstract->order("created_time")->where("user_id = $user_id")->select();
+		$abstracts = $Abstract->order("created_time")->where("user_id = $user_id and status > 0")->select();
 		
 		$this->assign('abstracts',$abstracts);
 		$this->assign('user',$user);

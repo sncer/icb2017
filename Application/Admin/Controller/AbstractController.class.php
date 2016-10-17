@@ -21,7 +21,7 @@ class AbstractController extends CommonController {
 		
 		
 		
-		$abstracts = $Abstract->table('icb_user user, icb_abstract abs')->where('abs.user_id = user.user_id')->order('abs.created_time desc')
+		$abstracts = $Abstract->table('icb_user user, icb_abstract abs')->where('abs.user_id = user.user_id and abs.status > 0')->order('abs.created_time desc')
 		->field('abs.*,user.title,user.first_name,user.last_name,user.email,user.affiliation,user.address,user.zip,user.city,user.country')
 		->select();
 		
