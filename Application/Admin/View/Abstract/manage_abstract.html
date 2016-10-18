@@ -33,10 +33,11 @@
 	                                    <thead>
 	                                        <tr>
 		                                        <th>#</th>
-		                                        <th>Title</th>
+		                                        <th>Full Title</th>
 		                                        <th>Topic</th>
 		                                        <th>Type</th>
 		                                        <th>Submission Time</th>
+		                                        <th>Title</th>
 		                                        <th>Name</th>
 		                                        <th>Email</th>
 		                                        <th>Affiliation</th>
@@ -56,6 +57,7 @@
 		                                            <td><php>echo $topic_list[$abstract['topic']]</php></td>
 		                                            <td><php>echo $type_list[$abstract['type']]</php></td>
 		                                            <td>{$abstract.created_time}</td>
+		                                            <td>{$abstract.title}</td>
 		                                            <td>{$abstract.first_name}&nbsp;{$abstract.last_name}</td>
 		                                            <td>{$abstract.email}</td>
 		                                            <td>{$abstract.affiliation}</td>

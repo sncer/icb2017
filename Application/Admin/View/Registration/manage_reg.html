@@ -35,6 +35,7 @@
 		                                        <th>#</th>
 		                                        <th>Reference Number</th>
 		                                        <th>Attendee Category</th>
+		                                        <th>Title</th>
 		                                        <th>Name</th>
 		                                        <th>Email</th>
 		                                        <th>Affiliation</th>
@@ -54,6 +55,7 @@
 		                                            <td>{$i}</td>
 		                                            <td>{$reg.refer_no}</td>
 		                                            <td><php>echo $refer_type_list[$reg['refer_type']]</php></td>
+		                                            <td>{$reg.title}</td>
 		                                            <td>{$reg.first_name}&nbsp;{$reg.last_name}</td>
 		                                            <td>{$reg.email}</td>
 		                                            <td>{$reg.affiliation}</td>

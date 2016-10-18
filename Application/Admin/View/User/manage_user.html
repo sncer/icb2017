@@ -33,6 +33,7 @@
 	                                    <thead>
 	                                        <tr>
 		                                        <th>#</th>
+		                                        <th>Title</th>
 		                                        <th>Name</th>
 		                                        <th>Email</th>
 		                                        <th>Affiliation</th>
@@ -49,6 +50,7 @@
 	                                        <volist name="users" id="user">
 		                                    	<tr id="user_{$user.user_id}" class="user_tr">
 		                                            <td>{$i}</td>
+		                                            <td>{$user.title}</td>
 		                                            <td>{$user.first_name}&nbsp;{$user.last_name}</td>
 		                                            <td>{$user.email}</td>
 		                                            <td>{$user.affiliation}</td>
