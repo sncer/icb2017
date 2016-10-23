@@ -20,7 +20,7 @@ class RegistrationController extends CommonController {
 		//查询该用户提交的摘要
 		$Reg = M('Reg');
 		
-		$regs = $Reg->order("created_time desc")->where("status = 1")->select();
+		$regs = $Reg->order("created_time")->where("status = 1")->select();
 		
 		$refer_type_list = C('REFER_TYPE_LIST');
 		
