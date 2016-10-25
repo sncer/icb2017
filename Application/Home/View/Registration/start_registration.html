@@ -123,9 +123,8 @@
 					</div>
 					<div class="form-group">
 						<label for="birth_date" class="col-sm-4 control-label">Date of Birth<span class="mark">*</span></label>
-						<div class="col-sm-8 input-group date form_date">
-							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-							<input id="birth_date" name="birth_date" class="form-control" type="text" placeholder="Pick One">
+						<div class="col-sm-8 input-group date">
+							<input id="birth_date" name="birth_date" class="form-control form_date" type="text" placeholder="Pick One">
 						</div>
 					</div>
 				</div>
@@ -247,19 +246,12 @@
 		});
 			
 		$('.form_date').datetimepicker({
-	        weekStart: 1,
-			autoclose: 1,
-			todayHighlight: 1,
-			startView: 2,
-			minView: 2,
-			forceParse: 0,
-			format: "yyyy-mm-dd",
-			pickerPosition: "top-right"
-	    });
-	    
+                viewMode: 'years',
+                format: 'YYYY-MM-DD'
+            });
+
     	$('.form_date')
-    	.datetimepicker()
-        .on('changeDate', function (e) {
+        .on('dp.change dp.show', function (e) {
             // Revalidate the date when user change it
             $('#registration_form').bootstrapValidator('revalidateField', 'birth_date');
         });
