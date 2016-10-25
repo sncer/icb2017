@@ -143,7 +143,7 @@ class RegistrationController extends CommonController {
 			if($data['is_visa'] == 1){
 				$visa['reg_id'] =  $reg_id;
 				$visa['user_id'] =  $user_id;
-				$visa['full_name'] = trim($_POST['full_name']);
+				$visa['full_name'] = trim($_POST['first_name']) . " " . trim($_POST['last_name']);
 				$visa['address'] = $_POST['address'];
 				$visa['zip'] = $_POST['zip'];
 				$visa['city'] = $_POST['city'];
