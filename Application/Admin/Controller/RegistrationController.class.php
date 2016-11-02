@@ -178,7 +178,7 @@ class RegistrationController extends CommonController {
 		//查询该用户提交的摘要
 		$Reg = M('Reg');
 		
-		$regs = $Reg->table('icb_reg reg')->order("reg.created_time")->where("reg.status = 1")
+		$regs = $Reg->table('icb_reg reg')->order("reg.created_time")->where("reg.status = 1 and reg.is_visa = 1")
 		->field('reg.*,visa.full_name,visa.address as visa_address,visa.zip as visa_zip,visa.city as visa_city,visa.country as visa_country,visa.birth_date,count(DISTINCT abs.abstract_id) abs_num,abs.full_title,abs.type')
 		->group('reg.reg_id')
 		->join('left join icb_visa visa on reg.reg_id = visa.reg_id')
