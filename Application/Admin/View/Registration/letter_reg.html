@@ -54,6 +54,8 @@
 		                                        <th>Country (personal address)</th>
 		                                        <th>Date of Birth</th>
 		                                        <th>Submit Abstract</th>
+		                                        <th>Topic</th>
+		                                        <th>Full Title</th>
 		                                        <th>&nbsp;</th>
 		                                    </tr>
 	                                    </thead>
@@ -94,7 +96,10 @@
 		                                            	<else />
 		                                            	<td>No</td>
 		                                            </if>
-		                                            <td>
+		                                            
+			                                        <td><php>echo $type_list[$reg['type']]</php></td>
+			                                        <td>{$reg.full_title}</td>
+			                                        <td>
 		                                            	<a target="_blank" href="__MODULE__/Registration/details_reg?reg_id={$reg.reg_id}" data-toggle="tooltip" data-placement="bottom" title="Details" class="btn btn-default btn-circle"><i class="fa fa-ellipsis-h"></i></a>
 			                                        </td>
 		                                        </tr>

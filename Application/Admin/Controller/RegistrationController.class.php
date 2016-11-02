@@ -179,7 +179,7 @@ class RegistrationController extends CommonController {
 		$Reg = M('Reg');
 		
 		$regs = $Reg->table('icb_reg reg')->order("reg.created_time")->where("reg.status = 1")
-		->field('reg.*,visa.full_name,visa.address,visa.zip,visa.city,visa.country,visa.birth_date,count(DISTINCT abs.abstract_id) abs_num')
+		->field('reg.*,visa.full_name,visa.address,visa.zip,visa.city,visa.country,visa.birth_date,count(DISTINCT abs.abstract_id) abs_num,abs.full_title,abs.type')
 		->group('reg.reg_id')
 		->join('left join icb_visa visa on reg.reg_id = visa.reg_id')
 		->join('left join icb_abstract abs on reg.user_id = abs.user_id and concat(reg.first_name,reg.last_name) = (select concat(user.first_name,user.last_name) from icb_user user where user.user_id = reg.user_id )')
@@ -190,6 +190,7 @@ class RegistrationController extends CommonController {
 		$this->assign('regs',$regs);
 		$this->assign('user',$user);
 		$this->assign('refer_type_list',$refer_type_list);
+		$this->assign('type_list',C('TYPE_LIST'));
 		$this->display();
 	}
 
