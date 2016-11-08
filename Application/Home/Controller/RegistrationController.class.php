@@ -342,7 +342,7 @@ class RegistrationController extends CommonController {
 			));
 		}
 	}
-	
+	//查看订单详情
 	public function details_reg(){
 		$reg_id = $_REQUEST['reg_id'];
 		if(!isset($reg_id)){
@@ -375,7 +375,7 @@ class RegistrationController extends CommonController {
 		}
 		
 		$curr_time = time();
-		$early_time = strtotime (date("2016-11-15")); //Early Bird 截止期日,上面还有一个
+		$early_time = strtotime (date("2016-11-15")); //Early Bird 截止期日,下面还有一个
 		$refer_type_list = C('REFER_TYPE_LIST');
 		$payment_url_list = C('PAYMENT_URL_LIST');
 		$total_cost_list = C('TOTAL_COST_LIST');
@@ -487,6 +487,173 @@ class RegistrationController extends CommonController {
 		$this->assign("visa",$visa);
 		$this->display('thanks');
 		
+	}
+	//打开支付页面
+	public function pay_reg(){
+		$reg_id = $_REQUEST['reg_id'];
+		if(!isset($reg_id)){
+			$this->display('Public:500');
+			exit;
+		}
+		//如果没有登录则报错
+		if(!session('?user')){
+			$this->display('Public:500');
+			exit;
+		}
+		$user = session('user');
+		$user_id = $user['user_id'];
+		$Reg = M('Reg');
+		//查询该用户的注册单
+		$data = $Reg->where("user_id =$user_id and reg_id=$reg_id")->find();
+		if(!$data){
+			$this->display('Public:500');
+			exit;
+		}
+		
+		$curr_time = time();
+		$early_time = strtotime (date("2016-11-15")); //Early Bird 截止期日,下面还有一个
+		$refer_type_list = C('REFER_TYPE_LIST');
+		$payment_url_list = C('PAYMENT_URL_LIST');
+		$total_cost_list = C('TOTAL_COST_LIST');
+		
+		//如果是信用卡支付
+		if ($data['pay_type'] == 1) {
+			//如果在截止日期之前
+			if($curr_time < $early_time){
+				//根据类型判断价格和支付链接
+				switch ($data['refer_type'])
+				{
+					case 1:
+						$payment_url = $payment_url_list["1"];
+						$total_cost = $total_cost_list["1"];
+						break;
+					case 2:
+						$payment_url = $payment_url_list["3"];
+						$total_cost = $total_cost_list["3"];
+						break;
+					case 3:
+						$payment_url = $payment_url_list["5"];
+						$total_cost = $total_cost_list["5"];
+						break;
+					case 4:
+						$payment_url = $payment_url_list["7"];
+						$total_cost = $total_cost_list["7"];
+						break;
+					default:
+						$payment_url = "";
+						$total_cost = 0;
+				}
+				
+			}else{
+				switch ($data['refer_type'])
+				{
+					case 1:
+						$payment_url = $payment_url_list["2"];
+						$total_cost = $total_cost_list["2"];
+						break;
+					case 2:
+						$payment_url = $payment_url_list["4"];
+						$total_cost = $total_cost_list["4"];
+						break;
+					case 3:
+						$payment_url = $payment_url_list["6"];
+						$total_cost = $total_cost_list["6"];
+						break;
+					case 4:
+						$payment_url = $payment_url_list["8"];
+						$total_cost = $total_cost_list["8"];
+						break;
+					default:
+						$payment_url = "";
+						$total_cost = 0;
+				}
+			}
+			$this->assign("payment_url",$payment_url);
+			
+		} else {
+			//如果是转账
+			//如果在截止日期之前
+			if($curr_time < $early_time){
+				//根据类型判断价格
+				switch ($data['refer_type'])
+				{
+					case 1:
+						$total_cost = $total_cost_list["1"];
+						break;
+					case 2:
+						$total_cost = $total_cost_list["3"];
+						break;
+					case 3:
+						$total_cost = $total_cost_list["5"];
+						break;
+					case 4:
+						$total_cost = $total_cost_list["7"];
+						break;
+					default:
+						$total_cost = 0;
+				}
+				
+			}else{
+				switch ($data['refer_type'])
+				{
+					case 1:
+						$total_cost = $total_cost_list["2"];
+						break;
+					case 2:
+						$total_cost = $total_cost_list["4"];
+						break;
+					case 3:
+						$total_cost = $total_cost_list["6"];
+						break;
+					case 4:
+						$total_cost = $total_cost_list["8"];
+						break;
+					default:
+						$total_cost = 0;
+				}
+			}
+			$this->assign("bank_account_details",C("BANK_ACCOUNT_DETAILS"));
+		}
+		$this->assign("pay_type",$data['pay_type']);
+		$this->assign("total_cost",$total_cost);
+		$this->assign("refer_type_list",$refer_type_list);
+		$this->assign("refer_type",$data['refer_type']);
+		$this->assign("refer_no",$data['refer_no']);
+		$this->assign("reg",$data);
+		$this->display('pay_reg');
+	}
+	
+	//ajax修改支付方式
+	public function change_paytype(){
+		$pay_type = $_POST['pay_type'];
+		$reg_id = $_POST['reg_id'];
+		if(!isset($reg_id) || !isset($pay_type)){
+			$this->display('Public:500');
+			exit;
+		}
+		//如果没有登录则报错
+		if(!session('?user')){
+			$this->display('Public:500');
+			exit;
+		}
+		$user = session('user');
+		$user_id = $user['user_id'];
+		
+		$Reg = M('Reg');
+		$data['pay_type'] = $pay_type;
+		$data['updated_time'] = date("Y-m-d H:i:s");
+		// 根据条件更新记录
+		$result = $Reg->where("user_id =$user_id and reg_id=$reg_id")->save($data); 
+		if($result){
+			//修改成功
+			echo json_encode(array(
+	    		'result' => "success",
+			));
+		}else{
+			echo json_encode(array(
+	    		'result' => "fail",
+			));
+		}
 	}
 
 	public function new_reg(){

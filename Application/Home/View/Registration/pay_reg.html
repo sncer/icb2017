@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<include file="./Application/Home/View/Public/common/user_head.html" />
+
+	<body>
+		<div class="container header">
+			<div class="jumbotron">
+
+			</div>
+		</div>
+		<div class="container main">
+			<div class="col-md-8 col-md-offset-2">
+				
+				<h2 class="text-center">Payment</h2>
+				<p class="lead">The Total Cost is <strong>NZD {$total_cost}</strong>.</p>
+				<p class="lead">Your Selected Payment Type is <select id="paytype_select"> 
+															  <option value ="1">Credit Card</option>
+															  <option value ="2">Wire Transfer</option>
+															</select>
+				.</p>
+					
+				<if condition="$pay_type eq 1 ">
+
+					<p class="lead">Please click <a class="btn btn-success" target="_blank" href="{$payment_url}">HRER</a> to pay for the money by credit card.</p>
+					<else /> 
+					<p class="lead">The Bank Account Details are as follows:</p>
+					<table class="table table-condensed">
+						<tbody>
+							<tr>
+								<th scope="row">Bank Name</th>
+								<td>{$bank_account_details['bank_name']}</td>
+							</tr>
+							<tr>
+								<th scope="row">Branch Name</th>
+								<td>{$bank_account_details['branch_name']}</td>
+							</tr>
+							<tr>
+								<th scope="row">Account Name</th>
+								<td>{$bank_account_details['account_name']}</td>
+							</tr>
+							<tr>
+								<th scope="row">Account Number</th>
+								<td>{$bank_account_details['account_number']}</td>
+							</tr>
+							<tr>
+								<th scope="row">Swift (Routing) Number</th>
+								<td>{$bank_account_details['swift_number']}</td>
+							</tr>
+							<tr>
+								<th scope="row">Bank Address</th>
+								<td>{$bank_account_details['bank_address']}</td>
+							</tr>
+						</tbody>
+					</table>
+					
+				</if>
+				<p><span class="mark">*</span>Please quote your <strong>Reference Number</strong> when making payment.</p>
+				<br />
+				
+				<hr />
+				
+				<p class="text-center">
+					<a class="btn btn-success" href="{:U('Registration/manage_reg')}">See My Registration</a>
+					<a class="btn btn-default" href="http://www.icb2017.org">Reutrn to Homepage</a>
+				</p>
+			</div>
+			
+
+		</div>
+		<div id="loading"><img src="__STATIC__/img/loading.gif" alt="loading" />&nbsp;Loading...</div>
+		<include file="./Application/Home/View/Public/common/user_script.html" />
+		<script type="text/javascript">
+		
+		$(document).ready(function() {
+			//设置支付方式初始值
+			var pay_type = "{$pay_type}";
+			if(pay_type != ""){
+				$("#paytype_select").val(pay_type);
+			}
+			
+			//监听支付方式下拉框
+			$("#paytype_select").change(function(){
+				changePaytype();
+				
+			});
+			
+		});
+		
+		//改变支付方式
+		function changePaytype(){
+			var pay_type = $("#paytype_select").val();
+			var reg_id = "{$reg['reg_id']}";
+			
+			$.ajax({ 
+	            type: "post", 
+	            url: "{:U('Registration/change_paytype')}", 
+	            dataType: "json", 
+	            data: {
+	            	reg_id : reg_id,
+	            	pay_type : pay_type
+	            },
+	            beforeSend: function () {
+			        $("#loading").show();
+			    },
+	            success: function (res) {
+	            	if(res['result'] == "success"){
+	            		//修改支付方式成功！
+	            		alert("Change Payment Type Successfully!");
+	            		window.location.reload();//刷新当前页面.
+	            	}else{
+	            		alert(res['result']);
+	            	}
+	            }, 
+	            error: function () { 
+	                alert("error！"); 
+	            },
+	            complete: function () {
+			        $("#loading").hide();
+			    }
+	        });
+			
+		}
+		</script>
+	</body>
+
+</html>
