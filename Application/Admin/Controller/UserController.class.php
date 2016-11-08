@@ -67,6 +67,25 @@ class UserController extends CommonController {
 
 	}
 
+	//查询提交摘要用户的注册情况
+	public function abs_user(){
+		$User = M('User');
+		
+		$users = $User->table('icb_abstract abs')->where('abs.status > 0')->order('abs.created_time')
+		->field('user.user_id,user.title,user.first_name,user.last_name,user.email,abs.full_title,abs.topic,abs.type,abs.created_time,abs.status,count(DISTINCT reg.reg_id) reg_num')
+		->group('abs.abstract_id')
+		->join('left join icb_user user on abs.user_id = user.user_id')
+		->join('left join icb_reg reg on reg.status > 0 and reg.user_id = user.user_id and concat(reg.first_name,reg.last_name) = concat(user.first_name,user.last_name)')
+		->select();
+		
+		$this->assign('topic_list',C('TOPIC_LIST'));
+		$this->assign('type_list',C('TYPE_LIST'));
+		
+		$this->assign('users',$users);
+
+		$this->display();
+	}
+
 /*	
 	//发送电子邮件
 	public function send_mail($toAddress,$subject,$title,$last_name,$type){
