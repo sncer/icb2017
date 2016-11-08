@@ -72,7 +72,7 @@ class UserController extends CommonController {
 		$User = M('User');
 		
 		$users = $User->table('icb_abstract abs')->where('abs.status > 0')->order('abs.created_time')
-		->field('user.user_id,user.title,user.first_name,user.last_name,user.email,abs.full_title,abs.topic,abs.type,abs.created_time,abs.status,count(DISTINCT reg.reg_id) reg_num')
+		->field('user.user_id,user.title,user.first_name,user.last_name,user.email,user.affiliation,user.country,abs.full_title,abs.topic,abs.type,abs.created_time,abs.status,count(DISTINCT reg.reg_id) reg_num')
 		->group('abs.abstract_id')
 		->join('left join icb_user user on abs.user_id = user.user_id')
 		->join('left join icb_reg reg on reg.status > 0 and reg.user_id = user.user_id and concat(reg.first_name,reg.last_name) = concat(user.first_name,user.last_name)')

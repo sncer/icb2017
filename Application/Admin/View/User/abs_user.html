@@ -14,7 +14,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Users who have submit abstracts and not do registration</h1>
+                        <h1 class="page-header">Users who have submit abstracts with registration</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -36,6 +36,8 @@
 		                                        <th>Title</th>
 		                                        <th>Name</th>
 		                                        <th>Email</th>
+		                                        <th>Affiliation</th>
+		                                        <th>Country</th>
 		                                        <th>Full Title</th>
 		                                        <th>Topic</th>
 		                                        <th>Type</th>
@@ -50,6 +52,8 @@
 		                                            <td>{$user.title}</td>
 		                                            <td>{$user.first_name}&nbsp;{$user.last_name}</td>
 		                                            <td>{$user.email}</td>
+		                                            <td>{$user.affiliation}</td>
+		                                            <td>{$user.country}</td>
 		                                            <td>{$user.full_title}</td>
 		                                            <td><php>echo $topic_list[$user['topic']]</php></td>
 		                                            <td><php>echo $type_list[$user['type']]</php></td>
