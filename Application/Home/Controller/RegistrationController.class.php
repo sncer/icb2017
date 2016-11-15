@@ -161,7 +161,7 @@ class RegistrationController extends CommonController {
 			}
 			$Reg->commit();
 			$curr_time = time();
-			$early_time = strtotime (date("2016-11-15")); //Early Bird 截止期日,下面还有一个
+			$early_time = strtotime (date("2016-11-16")); //Early Bird 截止期日,下面还有一个
 			$refer_type_list = C('REFER_TYPE_LIST');
 			$payment_url_list = C('PAYMENT_URL_LIST');
 			$total_cost_list = C('TOTAL_COST_LIST');
@@ -375,7 +375,7 @@ class RegistrationController extends CommonController {
 		}
 		
 		$curr_time = time();
-		$early_time = strtotime (date("2016-11-15")); //Early Bird 截止期日,下面还有一个
+		$early_time = strtotime (date("2016-11-16")); //Early Bird 截止期日,下面还有一个
 		$refer_type_list = C('REFER_TYPE_LIST');
 		$payment_url_list = C('PAYMENT_URL_LIST');
 		$total_cost_list = C('TOTAL_COST_LIST');
@@ -511,7 +511,7 @@ class RegistrationController extends CommonController {
 		}
 		
 		$curr_time = time();
-		$early_time = strtotime (date("2016-11-15")); //Early Bird 截止期日,下面还有一个
+		$early_time = strtotime (date("2016-11-16")); //Early Bird 截止期日,下面还有一个
 		$refer_type_list = C('REFER_TYPE_LIST');
 		$payment_url_list = C('PAYMENT_URL_LIST');
 		$total_cost_list = C('TOTAL_COST_LIST');
