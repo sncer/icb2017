@@ -92,7 +92,7 @@
    	<include file="./Application/Admin/View/Public/common/user_script.html" />
    	<script>
 	    $(document).ready(function() {
-	        $('#dataTables').DataTable({
+	        var dataTable = $('#dataTables').DataTable({
 	                
 	        });
 	        
@@ -101,14 +101,14 @@
 				//获取reg_id
 				var reg_id = $(this).attr("data-id");
 				if(reg_id > 0){
-					pay_reg(reg_id);
+					pay_reg(reg_id,dataTable);
 				}
 	
 			});
 	    });
 	    
 	    //ajax删除摘要
-		function pay_reg(reg_id){
+		function pay_reg(reg_id,dataTable){
 			$.ajax({ 
 	            type: "post", 
 	            url: "{:U('Registration/pay_reg')}", 
@@ -123,7 +123,8 @@
 	            	if(res['result'] == "success"){
 	            		//删除成功
 	            		alert("Paid Successfully!");
-	            		$("#reg_"+reg_id).remove();
+//	            		$("#reg_"+reg_id).remove();
+						dataTable.row("#reg_"+reg_id).remove().draw( false );
 	            		if($(".reg_tr").size() == 0){
 	            			$("#reg_table").html("<p>You do not have any registration yet, click <a href="+"{:U('Registration/new_reg')}"+">here</a> to register now!</p>");
 	            		}
