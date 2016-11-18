@@ -96,7 +96,7 @@
 	                
 	        });
 	        
-	        $(".btn_pay").click(function(){
+	        $("#dataTables").on('click','.btn_pay',function(){
 	        	var r=confirm("Are you his registration has been paid?")
 				if(r==true){
 					//获取reg_id
