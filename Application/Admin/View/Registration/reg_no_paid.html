@@ -88,7 +88,7 @@
 
     </div>
     <!-- /#wrapper -->
-
+	<div id="loading"><img src="__STATIC__/img/loading.gif" alt="loading" />&nbsp;Loading...</div>
    	<include file="./Application/Admin/View/Public/common/user_script.html" />
    	<script>
 	    $(document).ready(function() {
@@ -97,11 +97,13 @@
 	        });
 	        
 	        $(".btn_pay").click(function(){
-	        	
-				//获取reg_id
-				var reg_id = $(this).attr("data-id");
-				if(reg_id > 0){
-					pay_reg(reg_id,dataTable);
+	        	var r=confirm("Are you his registration has been paid?")
+				if(r==true){
+					//获取reg_id
+					var reg_id = $(this).attr("data-id");
+					if(reg_id > 0){
+						pay_reg(reg_id,dataTable);
+					}
 				}
 	
 			});
@@ -117,7 +119,7 @@
 	            	reg_id : reg_id
 	            },
 	            beforeSend: function () {
-//			        $("#loading").show();
+			        $("#loading").show();
 			    },
 	            success: function (res) {
 	            	if(res['result'] == "success"){
@@ -136,7 +138,7 @@
 	                alert("error！"); 
 	            },
 	            complete: function () {
-//			        $("#loading").hide();
+			        $("#loading").hide();
 			    }
 	        });
 		}
