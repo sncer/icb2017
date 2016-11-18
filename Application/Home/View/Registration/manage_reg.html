@@ -70,8 +70,10 @@
 	                                            </if>
 	                                            <td>
 	                                            	<a target="_blank" href="__MODULE__/Registration/details_reg?reg_id={$reg.reg_id}" data-toggle="tooltip" data-placement="bottom" title="More Details" class="btn btn-default btn-circle"><i class="fa fa-ellipsis-h"></i></a>
-		                                        	<button data-id="{$reg.reg_id}" data-toggle="tooltip" data-placement="bottom" title="Delete" type="button" class="btn btn-danger btn-circle btn_delete"><i class="fa fa-trash-o"></i></button>
-		                                        </td>
+		                                        	<if condition="$reg.status eq 1">
+		                                        		<button data-id="{$reg.reg_id}" data-toggle="tooltip" data-placement="bottom" title="Delete" type="button" class="btn btn-danger btn-circle btn_delete"><i class="fa fa-trash-o"></i></button>
+		                                            </if>
+	                                            </td>
 	                                        </tr>
 	                                    </volist>
 	                                </tbody>
