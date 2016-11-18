@@ -37,6 +37,7 @@
 	                                        <th>Email Address</th>
 	                                        <th>Invitation Letter</th>
 	                                        <th>Payment Type</th>
+	                                        <th>Status</th>
 	                                        <th>&nbsp;</th>
 	                                    </tr>
 	                                </thead>
@@ -60,8 +61,14 @@
 	                                            	<else />
 	                                            	<td>Wire Transfer</td>
 	                                            </if>
+	                                            <if condition="$reg.status eq 2">
+	                                            	<td><button class="btn btn-success" disabled="disabled">Paid</button></td>
+	                                            	<else />
+	                                            	<td>
+	                                            		<a target="_blank" href="__MODULE__/Registration/pay_reg?reg_id={$reg.reg_id}" data-toggle="tooltip" data-placement="bottom" title="Pay" class="btn btn-success">Pay</a>
+	                                            	</td>
+	                                            </if>
 	                                            <td>
-	                                            	<a target="_blank" href="__MODULE__/Registration/pay_reg?reg_id={$reg.reg_id}" data-toggle="tooltip" data-placement="bottom" title="Pay" class="btn btn-success btn-circle"><i class="fa fa-dollar"></i></a>
 	                                            	<a target="_blank" href="__MODULE__/Registration/details_reg?reg_id={$reg.reg_id}" data-toggle="tooltip" data-placement="bottom" title="More Details" class="btn btn-default btn-circle"><i class="fa fa-ellipsis-h"></i></a>
 		                                        	<button data-id="{$reg.reg_id}" data-toggle="tooltip" data-placement="bottom" title="Delete" type="button" class="btn btn-danger btn-circle btn_delete"><i class="fa fa-trash-o"></i></button>
 		                                        </td>

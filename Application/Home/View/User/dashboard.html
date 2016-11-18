@@ -92,7 +92,7 @@
 		                                        <th>Email Address</th>
 		                                        <th>Invitation Letter</th>
 		                                        <th>Payment Type</th>
-		                                        <th>&nbsp;</th>
+		                                        <th>Status</th>
 		                                    </tr>
 	                                    </thead>
 	                                    <tbody>
@@ -115,9 +115,13 @@
 	                                            	<else />
 	                                            	<td>Wire Transfer</td>
 	                                            </if>
-	                                            <td>
-	                                            	<a target="_blank" href="__MODULE__/Registration/pay_reg?reg_id={$reg.reg_id}" data-toggle="tooltip" data-placement="bottom" title="Pay" class="btn btn-success">Pay</a>
-		                                        </td>
+	                                            <if condition="$reg.status eq 2">
+	                                            	<td><button class="btn btn-success" disabled="disabled">Paid</button></td>
+	                                            	<else />
+	                                            	<td>
+	                                            		<a target="_blank" href="__MODULE__/Registration/pay_reg?reg_id={$reg.reg_id}" data-toggle="tooltip" data-placement="bottom" title="Pay" class="btn btn-success">Pay</a>
+	                                            	</td>
+	                                            </if>
 	                                        </tr>
 	                                    </volist>
 	                                </tbody>

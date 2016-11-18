@@ -20,7 +20,7 @@ class RegistrationController extends CommonController {
 		//查询该用户提交的摘要
 		$Reg = M('Reg');
 		
-		$regs = $Reg->order("created_time")->where("status = 1")->select();
+		$regs = $Reg->order("created_time")->where("status > 0")->select();
 		
 		$refer_type_list = C('REFER_TYPE_LIST');
 		
@@ -58,7 +58,7 @@ class RegistrationController extends CommonController {
 		}
 		
 		$curr_time = time();
-		$early_time = strtotime (date("2016-11-16")); //Early Bird 截止期日
+		$early_time = strtotime (date("2016-11-23")); //Early Bird 截止期日
 		$refer_type_list = C('REFER_TYPE_LIST');
 		$payment_url_list = C('PAYMENT_URL_LIST');
 		$total_cost_list = C('TOTAL_COST_LIST');
@@ -178,7 +178,7 @@ class RegistrationController extends CommonController {
 		//查询该用户提交的摘要
 		$Reg = M('Reg');
 		
-		$regs = $Reg->table('icb_reg reg')->order("reg.created_time")->where("reg.status = 1 and reg.is_visa = 1")
+		$regs = $Reg->table('icb_reg reg')->order("reg.created_time")->where("reg.status > 0 and reg.is_visa = 1")
 		->field('reg.*,visa.full_name,visa.address as visa_address,visa.zip as visa_zip,visa.city as visa_city,visa.country as visa_country,visa.birth_date,count(DISTINCT abs.abstract_id) abs_num,abs.full_title,abs.type')
 		->group('reg.reg_id')
 		->join('left join icb_visa visa on reg.reg_id = visa.reg_id')
@@ -192,6 +192,46 @@ class RegistrationController extends CommonController {
 		$this->assign('refer_type_list',$refer_type_list);
 		$this->assign('type_list',C('TYPE_LIST'));
 		$this->display();
+	}
+	
+	//查询已注册但是没缴费的订单
+	public function reg_no_paid(){
+		
+		$Reg = M('Reg');
+		
+		$regs = $Reg->order("created_time")->where("status = 1")->select();
+		
+		$refer_type_list = C('REFER_TYPE_LIST');
+		
+		$this->assign('regs',$regs);
+		$this->assign('user',$user);
+		$this->assign('refer_type_list',$refer_type_list);
+		$this->display();
+	}
+
+	//后台修改订单状态为已支付，status=2
+	public function pay_reg(){
+		$reg_id = $_POST['reg_id'];
+		if(!isset($reg_id)){
+			$this->display('Public:500');
+			exit;
+		}
+		
+		$Reg = M('Reg');
+		$data['status'] = 2;
+		$data['updated_time'] = date("Y-m-d H:i:s");
+		// 根据条件更新记录
+		$result = $Reg->where("status = 1 and reg_id=$reg_id")->save($data); 
+		if($result){
+			//修改成功
+			echo json_encode(array(
+	    		'result' => "success",
+			));
+		}else{
+			echo json_encode(array(
+	    		'result' => "fail",
+			));
+		}
 	}
 
 

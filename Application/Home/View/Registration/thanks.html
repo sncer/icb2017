@@ -63,11 +63,15 @@
 				<hr />
 				
 				<h2 class="text-center">Payment</h2>
-				<p class="lead">The Total Cost is <strong>NZD {$total_cost}</strong>.</p>
-				<if condition="$pay_type eq 1 ">
+				
+				<if condition="$pay_type eq 1 and $reg.status eq 1">
+					<p class="lead">The Total Cost is <strong>NZD {$total_cost}</strong>.</p>
 					<p class="lead">Your Payment Type is <strong>Credit Card</strong>.</p>
 					<p class="lead">Please click <a class="btn btn-success" target="_blank" href="{$payment_url}">HRER</a> to pay for the money by credit card.</p>
-					<else /> 
+					<p><span class="mark">*</span>Please quote your <strong>Reference Number</strong> when making payment.</p>
+					
+				<elseif condition="$pay_type eq 2 and $reg.status eq 1"/> 
+					<p class="lead">The Total Cost is <strong>NZD {$total_cost}</strong>.</p>
 					<p class="lead">Your Payment Type is <strong>Wire Transfer</strong>.</p>
 					<p class="lead">The Bank Account Details are as follows:</p>
 					<table class="table table-condensed">
@@ -98,9 +102,12 @@
 							</tr>
 						</tbody>
 					</table>
+					<p><span class="mark">*</span>Please quote your <strong>Reference Number</strong> when making payment.</p>
 					
+				<elseif condition="$reg.status eq 2"/>
+				<p class="lead">You have paid the registration fee already.</p>
 				</if>
-				<p><span class="mark">*</span>Please quote your <strong>Reference Number</strong> when making payment.</p>
+
 				<br />
 				
 				<hr />
