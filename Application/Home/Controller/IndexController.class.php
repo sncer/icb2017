@@ -65,6 +65,11 @@ class IndexController extends CommonController {
     	$this->assign('href',$href);
     	$this->display();
 	}
+	public function secondday(){
+		$href = "secondday";
+    	$this->assign('href',$href);
+    	$this->display();
+	}
 	public function registration(){
 		$href = "registration";
     	$this->assign('href',$href);
