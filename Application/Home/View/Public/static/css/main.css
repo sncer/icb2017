@@ -202,6 +202,9 @@ img{
 	font-size: 12px;
 	line-height: 21px;
 }
+.program i{
+	text-transform: capitalize;
+}
 .sessions_head{
 	width: 210px;
 	border-bottom: 1px rgb(73, 114, 36) solid;
