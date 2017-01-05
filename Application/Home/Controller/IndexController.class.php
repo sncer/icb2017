@@ -100,4 +100,10 @@ class IndexController extends CommonController {
     	$this->assign('href',$href);
     	$this->display();
 	}
+	public function transportation(){
+		$href = "transportation";
+    	$this->assign('href',$href);
+    	$this->display();
+	}
+	
 }
